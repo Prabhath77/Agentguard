@@ -1,0 +1,266 @@
+
+======================================================================
+  AGENTGUARD FULL EVALUATION — 5 run(s)
+  LLM: OFF (static only)  |  Validation: ON
+======================================================================
+
+  ── Run 1/5 ──
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 2
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-007 @ /home/student/realworld/damn-vulnerable-llm-agent/tools.py
+    [Attempt 1] Static secret extraction via file read
+      → 🟡 REACHED (conf=0.3) in 0.975s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.65)
+
+  [Validating] AGT-004 @ /home/student/realworld/damn-vulnerable-llm-agent/tools.py (tools: get_current_user)
+    [Attempt 1] Confirm tool chain by enumerating exposed callables
+      → 🟡 REACHED (conf=0.3) in 1.003s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.85)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 3
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-007 @ /home/student/realworld/damn-vulnerable-llm-agent/transaction_db.py
+    [Attempt 1] Static secret extraction via file read
+      → 🟡 REACHED (conf=0.3) in 0.672s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.65)
+
+  [Validating] AGT-006 @ /home/student/realworld/damn-vulnerable-llm-agent/transaction_db.py:62
+    [Attempt 1] UNION-based SQL injection (class-method target) with dynamic column-count discov
+      → ✅ EXTRACTED (conf=1.0) in 0.76s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-006 @ /home/student/realworld/damn-vulnerable-llm-agent/transaction_db.py:76
+    [Attempt 1] UNION-based SQL injection (class-method target) with dynamic column-count discov
+      → ✅ EXTRACTED (conf=1.0) in 0.753s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+     pre-validation:  P=0.500 R=1.000 F1=0.667
+     post-validation: P=1.000 R=0.500 F1=0.667
+     buckets: {'CONFIRMED': 2, 'SUSPECTED': 3, 'DISMISSED': 0}
+     wall clock: 6.4s
+
+  ── Run 2/5 ──
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 2
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-007 @ /home/student/realworld/damn-vulnerable-llm-agent/tools.py
+    [Attempt 1] Static secret extraction via file read
+      → 🟡 REACHED (conf=0.3) in 0.693s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.65)
+
+  [Validating] AGT-004 @ /home/student/realworld/damn-vulnerable-llm-agent/tools.py (tools: get_current_user)
+    [Attempt 1] Confirm tool chain by enumerating exposed callables
+      → 🟡 REACHED (conf=0.3) in 0.787s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.85)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 3
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-007 @ /home/student/realworld/damn-vulnerable-llm-agent/transaction_db.py
+    [Attempt 1] Static secret extraction via file read
+      → 🟡 REACHED (conf=0.3) in 0.638s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.65)
+
+  [Validating] AGT-006 @ /home/student/realworld/damn-vulnerable-llm-agent/transaction_db.py:62
+    [Attempt 1] UNION-based SQL injection (class-method target) with dynamic column-count discov
+      → ✅ EXTRACTED (conf=1.0) in 0.705s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-006 @ /home/student/realworld/damn-vulnerable-llm-agent/transaction_db.py:76
+    [Attempt 1] UNION-based SQL injection (class-method target) with dynamic column-count discov
+      → ✅ EXTRACTED (conf=1.0) in 0.784s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+     pre-validation:  P=0.500 R=1.000 F1=0.667
+     post-validation: P=1.000 R=0.500 F1=0.667
+     buckets: {'CONFIRMED': 2, 'SUSPECTED': 3, 'DISMISSED': 0}
+     wall clock: 5.6s
+
+  ── Run 3/5 ──
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 2
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-007 @ /home/student/realworld/damn-vulnerable-llm-agent/tools.py
+    [Attempt 1] Static secret extraction via file read
+      → 🟡 REACHED (conf=0.3) in 0.655s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.65)
+
+  [Validating] AGT-004 @ /home/student/realworld/damn-vulnerable-llm-agent/tools.py (tools: get_current_user)
+    [Attempt 1] Confirm tool chain by enumerating exposed callables
+      → 🟡 REACHED (conf=0.3) in 0.676s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.85)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 3
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-007 @ /home/student/realworld/damn-vulnerable-llm-agent/transaction_db.py
+    [Attempt 1] Static secret extraction via file read
+      → 🟡 REACHED (conf=0.3) in 0.667s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.65)
+
+  [Validating] AGT-006 @ /home/student/realworld/damn-vulnerable-llm-agent/transaction_db.py:62
+    [Attempt 1] UNION-based SQL injection (class-method target) with dynamic column-count discov
+      → ✅ EXTRACTED (conf=1.0) in 0.736s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-006 @ /home/student/realworld/damn-vulnerable-llm-agent/transaction_db.py:76
+    [Attempt 1] UNION-based SQL injection (class-method target) with dynamic column-count discov
+      → ✅ EXTRACTED (conf=1.0) in 0.692s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+     pre-validation:  P=0.500 R=1.000 F1=0.667
+     post-validation: P=1.000 R=0.500 F1=0.667
+     buckets: {'CONFIRMED': 2, 'SUSPECTED': 3, 'DISMISSED': 0}
+     wall clock: 5.4s
+
+  ── Run 4/5 ──
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 2
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-007 @ /home/student/realworld/damn-vulnerable-llm-agent/tools.py
+    [Attempt 1] Static secret extraction via file read
+      → 🟡 REACHED (conf=0.3) in 0.676s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.65)
+
+  [Validating] AGT-004 @ /home/student/realworld/damn-vulnerable-llm-agent/tools.py (tools: get_current_user)
+    [Attempt 1] Confirm tool chain by enumerating exposed callables
+      → 🟡 REACHED (conf=0.3) in 0.741s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.85)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 3
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-007 @ /home/student/realworld/damn-vulnerable-llm-agent/transaction_db.py
+    [Attempt 1] Static secret extraction via file read
+      → 🟡 REACHED (conf=0.3) in 0.661s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.65)
+
+  [Validating] AGT-006 @ /home/student/realworld/damn-vulnerable-llm-agent/transaction_db.py:62
+    [Attempt 1] UNION-based SQL injection (class-method target) with dynamic column-count discov
+      → ✅ EXTRACTED (conf=1.0) in 0.682s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-006 @ /home/student/realworld/damn-vulnerable-llm-agent/transaction_db.py:76
+    [Attempt 1] UNION-based SQL injection (class-method target) with dynamic column-count discov
+      → ✅ EXTRACTED (conf=1.0) in 0.737s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+     pre-validation:  P=0.500 R=1.000 F1=0.667
+     post-validation: P=1.000 R=0.500 F1=0.667
+     buckets: {'CONFIRMED': 2, 'SUSPECTED': 3, 'DISMISSED': 0}
+     wall clock: 5.6s
+
+  ── Run 5/5 ──
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 2
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-007 @ /home/student/realworld/damn-vulnerable-llm-agent/tools.py
+    [Attempt 1] Static secret extraction via file read
+      → 🟡 REACHED (conf=0.3) in 0.756s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.65)
+
+  [Validating] AGT-004 @ /home/student/realworld/damn-vulnerable-llm-agent/tools.py (tools: get_current_user)
+    [Attempt 1] Confirm tool chain by enumerating exposed callables
+      → 🟡 REACHED (conf=0.3) in 0.712s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.85)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 3
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-007 @ /home/student/realworld/damn-vulnerable-llm-agent/transaction_db.py
+    [Attempt 1] Static secret extraction via file read
+      → 🟡 REACHED (conf=0.3) in 0.673s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.65)
+
+  [Validating] AGT-006 @ /home/student/realworld/damn-vulnerable-llm-agent/transaction_db.py:62
+    [Attempt 1] UNION-based SQL injection (class-method target) with dynamic column-count discov
+      → ✅ EXTRACTED (conf=1.0) in 0.704s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-006 @ /home/student/realworld/damn-vulnerable-llm-agent/transaction_db.py:76
+    [Attempt 1] UNION-based SQL injection (class-method target) with dynamic column-count discov
+      → ✅ EXTRACTED (conf=1.0) in 0.692s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+     pre-validation:  P=0.500 R=1.000 F1=0.667
+     post-validation: P=1.000 R=0.500 F1=0.667
+     buckets: {'CONFIRMED': 2, 'SUSPECTED': 3, 'DISMISSED': 0}
+     wall clock: 5.7s
+
+======================================================================
+  AGGREGATE RESULTS  (5 runs)
+======================================================================
+
+  [1-3] Precision / Recall / F1 (pre-validation)
+    Precision                  mean=0.5000  median=0.5000  min=0.5000  max=0.5000  stdev=0.0
+    Recall                     mean=1.0000  median=1.0000  min=1.0000  max=1.0000  stdev=0.0
+    F1                         mean=0.6667  median=0.6667  min=0.6667  max=0.6667  stdev=0.0
+
+  Targets (>= 0.85):
+    FAIL  precision >= 0.85
+    PASS  recall >= 0.85
+    FAIL  f1 >= 0.85
+
+  [4] False-positive rate
+    % safe files flagged       mean=0.0000  median=0.0000  min=0.0000  max=0.0000  stdev=0.0
+
+  [5] Determinism across 5 runs
+    unique outcomes: 1  (DETERMINISTIC)
+    meets target (<=1): PASS
+
+  [6] Scan time per agent (seconds, median-of-medians)
+    Static only                mean=0.0140  median=0.0157  min=0.0083  max=0.0191  stdev=0.0039
+    Hybrid (+LLM)              mean=0.0140  median=0.0157  min=0.0083  max=0.0191  stdev=0.0039
+    Validation                 mean=2.8516  median=2.7909  min=2.6927  max=3.1574  stdev=0.1612
+    Total                      mean=2.8656  median=2.8070  min=2.7034  max=3.1731  stdev=0.1619
+
+  [7] Estimated API cost
+    Cost USD (whole run)       mean=0.0000  median=0.0000  min=0.0000  max=0.0000  stdev=0.0
+    API requests               mean=0.0000  median=0.0000  min=0.0000  max=0.0000  stdev=0.0
+    Input tokens               mean=0.0000  median=0.0000  min=0.0000  max=0.0000  stdev=0.0
+    Output tokens              mean=0.0000  median=0.0000  min=0.0000  max=0.0000  stdev=0.0
+
+  [8] Validation buckets (run 1)
+    {'CONFIRMED': 2, 'SUSPECTED': 3, 'DISMISSED': 0}
+
+  [8b] Precision before vs after validation — THE KEY TEST
+    before: 0.5000
+    after:  1.0000
+    change: +0.5000
+
+
+  Full JSON:     reports/full_evaluation_5runs_20260803_212655.json
+  Markdown tables: reports/full_evaluation_5runs_20260803_212655.md
+

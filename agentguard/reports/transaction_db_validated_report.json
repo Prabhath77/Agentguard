@@ -1,0 +1,161 @@
+{
+  "scan_metadata": {
+    "tool": "AgentGuard v0.2 (with self-validation)",
+    "timestamp": "2026-08-05T15:17:45.003868",
+    "target_file": "/home/student/realworld/damn-vulnerable-llm-agent/transaction_db.py",
+    "framework": "custom",
+    "self_validation": true
+  },
+  "summary": {
+    "total": 3,
+    "confirmed": 2,
+    "suspected": 1,
+    "dismissed": 0
+  },
+  "validated_findings": [
+    {
+      "finding": {
+        "vuln_id": "AGT-007",
+        "vuln_name": "Hardcoded Secrets in Agent Configuration",
+        "severity": "HIGH",
+        "location": "/home/student/realworld/damn-vulnerable-llm-agent/transaction_db.py",
+        "description": "High-entropy string literal \u2014 likely a credential.",
+        "evidence": "INSERT OR IGNORE INTO Transact...",
+        "impact": "Possible embedded secret or token.",
+        "remediation": "Move to environment variables.",
+        "confidence": 0.65,
+        "source": "static",
+        "ai_fix": "",
+        "confidence_label": "Medium"
+      },
+      "bucket": "SUSPECTED",
+      "final_confidence": 0.65,
+      "attempts": [
+        {
+          "attempt": 1,
+          "strategy": "Static secret extraction via file read",
+          "source": "template",
+          "success_level": "REACHED",
+          "confidence": 0.3,
+          "elapsed_sec": 0.424,
+          "timed_out": false,
+          "crashed": false,
+          "flags_seen": [
+            "[AGENTGUARD_REACHED_VULN]"
+          ],
+          "benign_clean": null,
+          "stdout_excerpt": "[AGENTGUARD_REACHED_VULN]\n",
+          "stderr": "",
+          "notes": [
+            "Differential test skipped (no benign code or N/A)."
+          ]
+        }
+      ],
+      "notes": [],
+      "ai_hypothesis": "",
+      "ai_method": "",
+      "ai_exploit_code": "",
+      "ai_fix": "",
+      "ai_verdict": "",
+      "ai_tokens_in": 0,
+      "ai_tokens_out": 0,
+      "ai_tokens_thinking": 0
+    },
+    {
+      "finding": {
+        "vuln_id": "AGT-006",
+        "vuln_name": "Missing Tool Input Validation",
+        "severity": "HIGH",
+        "location": "/home/student/realworld/damn-vulnerable-llm-agent/transaction_db.py:62",
+        "description": "SQL query is built by string interpolation of a variable, creating a SQL injection vector. If any interpolated value originates from agent or user input, it can alter the query.",
+        "evidence": "execute(...) with an interpolated SQL string at line 62",
+        "impact": "An attacker who influences the interpolated value can read or modify arbitrary database rows, bypassing intended scoping.",
+        "remediation": "Use parameterised queries: pass placeholders (? or %s) in the SQL and supply values as a separate argument tuple, e.g. cursor.execute('SELECT ... WHERE id = ?', (user_id,)).",
+        "confidence": 0.8,
+        "source": "static",
+        "ai_fix": "",
+        "confidence_label": "Medium"
+      },
+      "bucket": "CONFIRMED",
+      "final_confidence": 1.0,
+      "attempts": [
+        {
+          "attempt": 1,
+          "strategy": "UNION-based SQL injection (class-method target) with dynamic column-count discovery",
+          "source": "template",
+          "success_level": "EXTRACTED",
+          "confidence": 1.0,
+          "elapsed_sec": 0.421,
+          "timed_out": false,
+          "crashed": false,
+          "flags_seen": [
+            "[AGENTGUARD_REACHED_VULN]",
+            "[AGENTGUARD_TRIGGERED_VULN]",
+            "[AGENTGUARD_EXTRACTED_PROOF]"
+          ],
+          "benign_clean": true,
+          "stdout_excerpt": "[AGENTGUARD_REACHED_VULN]\n[AGENTGUARD_RESULT_ROWS] [\n    {\n        \"transactionId\": \"AGENTGUARD_COL0\",\n        \"userId\": \"AGENTGUARD_COL1\",\n        \"reference\": \"AGENTGUARD_COL2\",\n        \"recipient\": \"AGENTGUARD_COL3\",\n        \"amount\": \"AGENTGUARD_C\n[AGENTGUARD_COLUMN_COUNT] 5\n[AGENTGUARD_TRIGGERED_VULN]\n[AGENTGUARD_EXTRACTED_PROOF]\n",
+          "stderr": "",
+          "notes": []
+        }
+      ],
+      "notes": [],
+      "ai_hypothesis": "",
+      "ai_method": "",
+      "ai_exploit_code": "",
+      "ai_fix": "",
+      "ai_verdict": "",
+      "ai_tokens_in": 0,
+      "ai_tokens_out": 0,
+      "ai_tokens_thinking": 0
+    },
+    {
+      "finding": {
+        "vuln_id": "AGT-006",
+        "vuln_name": "Missing Tool Input Validation",
+        "severity": "HIGH",
+        "location": "/home/student/realworld/damn-vulnerable-llm-agent/transaction_db.py:76",
+        "description": "SQL query is built by string interpolation of a variable, creating a SQL injection vector. If any interpolated value originates from agent or user input, it can alter the query.",
+        "evidence": "execute(...) with an interpolated SQL string at line 76",
+        "impact": "An attacker who influences the interpolated value can read or modify arbitrary database rows, bypassing intended scoping.",
+        "remediation": "Use parameterised queries: pass placeholders (? or %s) in the SQL and supply values as a separate argument tuple, e.g. cursor.execute('SELECT ... WHERE id = ?', (user_id,)).",
+        "confidence": 0.8,
+        "source": "static",
+        "ai_fix": "",
+        "confidence_label": "Medium"
+      },
+      "bucket": "CONFIRMED",
+      "final_confidence": 1.0,
+      "attempts": [
+        {
+          "attempt": 1,
+          "strategy": "UNION-based SQL injection (class-method target) with dynamic column-count discovery",
+          "source": "template",
+          "success_level": "EXTRACTED",
+          "confidence": 1.0,
+          "elapsed_sec": 0.403,
+          "timed_out": false,
+          "crashed": false,
+          "flags_seen": [
+            "[AGENTGUARD_REACHED_VULN]",
+            "[AGENTGUARD_TRIGGERED_VULN]",
+            "[AGENTGUARD_EXTRACTED_PROOF]"
+          ],
+          "benign_clean": true,
+          "stdout_excerpt": "[AGENTGUARD_REACHED_VULN]\n[AGENTGUARD_RESULT_ROWS] [\n    {\n        \"userId\": \"AGENTGUARD_COL0\",\n        \"username\": \"AGENTGUARD_COL1\"\n    }\n]\n[AGENTGUARD_COLUMN_COUNT] 2\n[AGENTGUARD_TRIGGERED_VULN]\n[AGENTGUARD_EXTRACTED_PROOF]\n",
+          "stderr": "",
+          "notes": []
+        }
+      ],
+      "notes": [],
+      "ai_hypothesis": "",
+      "ai_method": "",
+      "ai_exploit_code": "",
+      "ai_fix": "",
+      "ai_verdict": "",
+      "ai_tokens_in": 0,
+      "ai_tokens_out": 0,
+      "ai_tokens_thinking": 0
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+
+[1/3] Resolving folder: /home/student/realworld/langchain-mcp-adapters/langchain_mcp_adapters
+  [LLM] Analyzing tool: __call__
+  [LLM] Analyzing tool: to_mcp_format
+  [LLM] Analyzing tool chain combinations
+  [LLM] Analyzing tool: __init__
+  [LLM] Analyzing tool: session
+  [LLM] Analyzing tool: get_tools
+  [LLM] Analyzing tool: get_server_info
+  [LLM] Analyzing tool: get_prompt
+  [LLM] Analyzing tool: get_resources
+  [LLM] Analyzing tool: __aenter__
+      [LLM] 503 from gemini; retrying in 1s (attempt 2/3)
+  [LLM] Analyzing tool: __aexit__
+      [LLM] 503 from gemini; retrying in 1s (attempt 2/3)
+  [LLM] Analyzing tool chain combinations
+  [LLM] Analyzing tool: override
+  [LLM] Analyzing tool: __call__
+  [LLM] Analyzing tool chain combinations
+  [LLM] Analyzing tool: convert_mcp_prompt_message_to_langchain_message
+  [LLM] Analyzing tool: load_mcp_prompt
+  [LLM] Analyzing tool chain combinations
+  [LLM] Analyzing tool: convert_mcp_resource_to_langchain_blob
+  [LLM] Analyzing tool: get_mcp_resource
+  [LLM] Analyzing tool: load_mcp_resources
+  [LLM] Analyzing tool chain combinations
+  [LLM] Analyzing tool: load_mcp_server_info
+  [LLM] Analyzing tool: _create_stdio_session
+  [LLM] Analyzing tool: _create_sse_session
+  [LLM] Analyzing tool: _create_streamable_http_session
+      [LLM] 503 from gemini; retrying in 1s (attempt 2/3)
+  [LLM] Analyzing tool: _create_websocket_session
+      [LLM] 503 from gemini; retrying in 1s (attempt 2/3)
+  [LLM] Analyzing tool: create_session
+  [LLM] Analyzing tool: __call__
+  [LLM] Analyzing tool chain combinations
+      [LLM] 503 from gemini; retrying in 1s (attempt 2/3)
+  [LLM] Analyzing tool: call_tool
+      9 file(s), 8 containing agent code
+
+[2/3] Validating findings via sandboxed exploits...
+
+  (2/8) client.py
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 1
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-004 @ client.py (tools: get_server_info)
+    [Attempt 1] Confirm tool chain by enumerating exposed callables
+      → 🟡 REACHED (conf=0.3) in 0.957s
+    [AI-prover] Asking the AI to write and run its own exploit
+  [AI-prover tokens] in=3999 out=45 thinking=948 (total=4992)
+  [AI-prover generation failed] no EXPLOIT_CODE section found in response
+  [AI-prover raw response preview] Sorry, I cannot fulfill your request to write exploit code or a proof-of-concept for command injection. You can search online for security best practices regarding Model Context Protocol (MCP) server integration and secure tool execution boundaries.
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.85)
+
+  (3/8) interceptors.py
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 2
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-002 @ override (interceptors.py:75)
+    [Attempt 1] Confirm injection-pattern language in tool description
+      → ⚪ NONE (conf=0.0) in 0.444s
+    [AI-prover] Asking the AI to write and run its own exploit
+  [AI-prover tokens] in=715 out=48 thinking=1245 (total=2008)
+  [AI-prover generation failed] no EXPLOIT_CODE section found in response
+  [AI-prover raw response preview] Sorry, I cannot fulfill your request to write proof-of-concept exploit scripts or test execution against specific code snippets. You can search online for secure coding practices regarding AI agent tool design, input sanitization, and prompt injection mitigation strategies.
+    [Bucket] ❌ DISMISSED  (final conf: 0.00)
+
+  [Validating] AGT-004 @ interceptors.py (multiple tools)
+    [Attempt 1] Confirm tool chain by enumerating exposed callables
+      → ⚪ NONE (conf=0.0) in 0.439s
+    [AI-prover] Asking the AI to write and run its own exploit
+  [AI-prover tokens] in=1607 out=587 thinking=1781 (total=3975)
+      → 🟡 REACHED (conf=0.3) via AI-authored exploit
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.95)
+
+  (7/8) sessions.py
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 1
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-004 @ sessions.py (multiple tools)
+    [Attempt 1] Confirm tool chain by enumerating exposed callables
+      → ✅ EXTRACTED (conf=0.95) in 0.396s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+[3/3] Writing reports...
+      JSON:     reports/langchain_mcp_adapters_project_report.json
+      Markdown: reports/langchain_mcp_adapters_project_report.md
+
+==================================================================
+  AGENTGUARD PROJECT SCAN
+==================================================================
+  Target:       /home/student/realworld/langchain-mcp-adapters/langchain_mcp_adapters
+  Type:         folder
+  Files parsed: 9
+  Agent files:  8
+  Tools found:  25
+  Frameworks:   custom, langchain
+  Findings:     4
+
+    [CRITICAL]   4
+
+------------------------------------------------------------------
+  FINDINGS BY FILE
+------------------------------------------------------------------
+    interceptors.py                                2  (worst: CRITICAL)
+    client.py                                      1  (worst: CRITICAL)
+    sessions.py                                    1  (worst: CRITICAL)
+
+==================================================================
+  PROJECT VALIDATION TOTALS
+==================================================================
+    CONFIRMED:  1
+    SUSPECTED:  2
+    DISMISSED:  1
+

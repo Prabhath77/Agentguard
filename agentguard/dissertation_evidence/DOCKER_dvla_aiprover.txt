@@ -1,0 +1,70 @@
+
+[1/5] Parsing /home/student/realworld/damn-vulnerable-llm-agent/transaction_db.py...
+      Found 0 tool(s), framework: custom
+
+[2/5] Building capability graph...
+      Identified 0 potential attack path(s)
+
+[3/5] Running static + LLM analysis...
+      Identified 3 candidate finding(s)
+
+[4/5] Self-validation loop (Phase 3 + Phase 4)...
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 3
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-007 @ /home/student/realworld/damn-vulnerable-llm-agent/transaction_db.py
+    [AI-prover FIRST] Asking the AI to write and run its own exploit
+  [AI-prover tokens] in=1318 out=404 thinking=950 (total=2672)
+  [AI-prover warning] the exploit code looks incomplete (missing the required REACHED marker, or defines a function it never calls, or fails to parse) — a signature of the model's response being cut off before it finished. Running it anyway, but expect NONE. If this recurs, the token budget needs to go even higher.
+      → ⚪ NONE (conf=0.0) via AI-authored exploit
+    [Attempt 1] Static secret extraction via file read
+      → 🟡 REACHED (conf=0.3) in 0.344s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.65)
+
+  [Validating] AGT-006 @ /home/student/realworld/damn-vulnerable-llm-agent/transaction_db.py:62
+    [AI-prover FIRST] Asking the AI to write and run its own exploit
+      [LLM] 503 from gemini; retrying in 1s (attempt 2/3)
+  [AI-prover tokens] in=1350 out=48 thinking=894 (total=2292)
+  [AI-prover generation failed] no EXPLOIT_CODE section found in response
+  [AI-prover raw response preview] Sorry, I cannot fulfill your request to generate functional exploit code or proof-of-concept attack payloads for this vulnerability. You can search online for secure coding standards regarding parameterized queries in Python SQLite to learn how to remediate SQL injection risks.
+    [Attempt 1] UNION-based SQL injection (class-method target) with dynamic column-count discov
+      → ✅ EXTRACTED (conf=1.0) in 0.43s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-006 @ /home/student/realworld/damn-vulnerable-llm-agent/transaction_db.py:76
+    [AI-prover FIRST] Asking the AI to write and run its own exploit
+  [AI-prover tokens] in=1350 out=80 thinking=885 (total=2315)
+  [AI-prover generation failed] no EXPLOIT_CODE section found in response
+  [AI-prover raw response preview] Sorry, I cannot fulfill your request to write an exploit or proof-of-concept payload for this vulnerability. I can, however, direct you to resources on secure database access practices. \n  \n To learn more about preventing SQL injection in Python applications, you can search online for OWASP SQL Injection Prevention Cheat Sheet or consult the official Python `sqlite3` documentation regarding parameterized queries and place-holder substitutions.
+    [Attempt 1] UNION-based SQL injection (class-method target) with dynamic column-count discov
+      → ✅ EXTRACTED (conf=1.0) in 0.422s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+[5/5] Writing reports...
+      Markdown: reports/transaction_db_validated_report.md
+      JSON:     reports/transaction_db_validated_report.json
+
+════════════════════════════════════════════════════════════
+  VALIDATION SUMMARY
+════════════════════════════════════════════════════════════
+  ✅  CONFIRMED:  2
+  🟡  SUSPECTED:  1
+  ❌  DISMISSED:  0
+
+  CONFIRMED VULNERABILITIES (exploit succeeded):
+    ✅ [AGT-006] Missing Tool Input Validation
+       └─ /home/student/realworld/damn-vulnerable-llm-agent/transaction_db.py:62
+       └─ confidence: 100%
+    ✅ [AGT-006] Missing Tool Input Validation
+       └─ /home/student/realworld/damn-vulnerable-llm-agent/transaction_db.py:76
+       └─ confidence: 100%
+
+  SUSPECTED (manual review needed):
+    🟡 [AGT-007] Hardcoded Secrets in Agent Configuration
+       └─ /home/student/realworld/damn-vulnerable-llm-agent/transaction_db.py
+

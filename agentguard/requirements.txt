@@ -1,0 +1,36 @@
+# =============================================================================
+# AgentGuard v0.4 — Dependencies
+# =============================================================================
+# AgentGuard runs on FREE LLM providers (Gemini or Groq). No paid SDK is
+# required, and no provider SDK is required either: all four backends are
+# spoken over plain HTTP, which avoids SDK version drift on a fresh VM.
+#
+#   pip3 install -r requirements.txt --break-system-packages
+# =============================================================================
+
+# Required — HTTP transport for every LLM provider
+requests>=2.31.0
+
+# Required — capability graph construction
+networkx>=3.0
+
+# Optional — nicer console output if present
+rich>=13.0.0
+
+# NOTE: agent frameworks (anthropic, langchain, openai, ...) are deliberately
+# NOT dependencies. AgentGuard analyses code that imports them without needing
+# them installed: the sandbox stubs any absent third-party module at import
+# time. This matters in practice — an analyst cannot install a client's entire
+# dependency tree, and for untrusted client code it would be unsafe to try.
+
+# Optional — only needed for the web UI (webapp/app.py)
+flask>=3.0.0
+
+# Optional — only needed for scripts/compare_tools.py (Bandit/Semgrep comparison)
+bandit>=1.9.0
+semgrep>=1.170.0
+
+# Optional — only needed to run the tool comparison (compare command)
+# These are the baseline SAST tools AgentGuard is measured against.
+bandit>=1.7.0
+semgrep>=1.0.0

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AgentGuard — Scan Results</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>AgentGuard</h1>
+    <p class="tagline">Scan results</p>
+  </header>
+
+  <div class="summary-grid">
+    <div class="stat"><span class="num">{{ files_scanned }}</span><span class="label">files scanned</span></div>
+    <div class="stat"><span class="num">{{ agent_files }}</span><span class="label">agent files</span></div>
+    <div class="stat"><span class="num">{{ tools_found }}</span><span class="label">tools found</span></div>
+    <div class="stat"><span class="num">{{ total_findings }}</span><span class="label">total findings</span></div>
+  </div>
+
+  {% if frameworks %}
+  <p class="meta">Frameworks detected: {{ frameworks | join(', ') }} · scanned as: {{ target_kind }}</p>
+  {% else %}
+  <p class="meta">Scanned as: {{ target_kind }}</p>
+  {% endif %}
+
+  {% if severity_counts %}
+  <div class="severity-bar">
+    {% for sev in ['CRITICAL','HIGH','MEDIUM','LOW','INFO'] %}
+      {% if severity_counts.get(sev) %}
+        <span class="sev-chip sev-{{ sev|lower }}">{{ sev }} × {{ severity_counts[sev] }}</span>
+      {% endif %}
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <div class="downloads">
+    <a href="{{ url_for('download', job_id=job_id, fmt='md') }}" class="dl-btn">Download Markdown report</a>
+    <a href="{{ url_for('download', job_id=job_id, fmt='json') }}" class="dl-btn dl-secondary">Download JSON report</a>
+    <a href="{{ url_for('index') }}" class="dl-btn dl-secondary">Scan another</a>
+  </div>
+
+  {% if cross_file %}
+  <section class="section">
+    <h2>Cross-file capability chains <span class="badge">{{ cross_file|length }}</span></h2>
+    <p class="section-sub">Vulnerabilities invisible to any scanner that inspects one file at a time.</p>
+    {% for f in cross_file %}
+    <div class="finding sev-{{ f.severity|lower }}">
+      <div class="finding-head">
+        <span class="sev-chip sev-{{ f.severity|lower }}">{{ f.severity }}</span>
+        <strong>{{ f.vuln_id }} — {{ f.vuln_name }}</strong>
+      </div>
+      <p class="finding-loc">{{ f.location }}</p>
+      <p>{{ f.description }}</p>
+      <p class="finding-evidence"><code>{{ f.evidence }}</code></p>
+      <p><strong>Impact:</strong> {{ f.impact }}</p>
+      <p><strong>Remediation:</strong> {{ f.remediation }}</p>
+    </div>
+    {% endfor %}
+  </section>
+  {% endif %}
+
+  <section class="section">
+    <h2>Section 1 — Static Analysis <span class="badge badge-static">{{ static_findings|length }}</span></h2>
+    <p class="section-sub">Deterministic AST and pattern-based detectors. Fully reproducible, no API needed.</p>
+    {% if static_findings %}
+      {% for f in static_findings %}
+      <div class="finding sev-{{ f.severity|lower }}">
+        <div class="finding-head">
+          <span class="sev-chip sev-{{ f.severity|lower }}">{{ f.severity }}</span>
+          <strong>{{ f.vuln_id }} — {{ f.vuln_name }}</strong>
+          <span class="conf">conf {{ (f.confidence * 100)|round|int }}% ({{ f.confidence_label }})</span>
+        </div>
+        <p class="finding-loc">{{ f.location }}</p>
+        <p>{{ f.description }}</p>
+        <p><strong>Remediation:</strong> {{ f.remediation }}</p>
+      </div>
+      {% endfor %}
+    {% else %}
+      <p class="muted-note">No static findings.</p>
+    {% endif %}
+  </section>
+
+  <section class="section">
+    <h2>Section 2 — Gemini AI Analysis <span class="badge badge-ai">{{ gemini_findings|length }}</span></h2>
+    <p class="section-sub">Semantic review by the LLM. Each issue includes a proposed fix and a
+      confidence level — treat as expert review to verify, not proven fact.</p>
+    {% if gemini_findings %}
+      {% for f in gemini_findings %}
+      <div class="finding sev-{{ f.severity|lower }} ai-finding">
+        <div class="finding-head">
+          <span class="sev-chip sev-{{ f.severity|lower }}">{{ f.severity }}</span>
+          <strong>{{ f.vuln_id }} — {{ f.vuln_name }}</strong>
+          <span class="conf">conf {{ (f.confidence * 100)|round|int }}% ({{ f.confidence_label }})</span>
+        </div>
+        <p class="finding-loc">{{ f.location }}</p>
+        <p>{{ f.description }}</p>
+        <p><strong>Impact:</strong> {{ f.impact }}</p>
+        <p><strong>Remediation:</strong> {{ f.remediation }}</p>
+        {% if f.ai_fix %}
+        <p><strong>AI-suggested fix:</strong></p>
+        <pre class="ai-fix"><code>{{ f.ai_fix }}</code></pre>
+        {% endif %}
+      </div>
+      {% endfor %}
+    {% else %}
+      <p class="muted-note">No AI findings — either the code is clean at the semantic level,
+        or the AI layer was disabled (LLM checkbox off / no API key).</p>
+    {% endif %}
+  </section>
+
+  {% if parse_errors %}
+  <section class="section">
+    <h2>Files that could not be fully analysed</h2>
+    <ul class="plain-list">
+      {% for f in parse_errors %}<li><code>{{ f.path }}</code> — {{ f.parse_error }}</li>{% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  {% if skipped %}
+  <section class="section">
+    <h2>Skipped</h2>
+    <ul class="plain-list">
+      {% for s in skipped %}<li>{{ s }}</li>{% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+</div>
+</body>
+</html>

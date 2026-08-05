@@ -1,0 +1,32 @@
+{
+  "01_fintech_support_agent": {
+    "expected_findings": [],
+    "expected_cross_file": ["DATA_EXFILTRATION"],
+    "notes": "The defining case for project-level analysis: NO individual file contains a vulnerability. tools/accounts.py (read_customer_records = READ_LOCAL) and tools/notifications.py (send_email = WRITE_EXTERNAL) are each unremarkable in isolation. Only assessed together do they form a data-exfiltration chain. expected_findings is deliberately empty — a single-file scanner should score zero here.",
+    "should_be_clean": false
+  },
+  "02_devops_assistant": {
+    "expected_findings": ["AGT-001", "AGT-004", "AGT-006", "AGT-007", "AGT-008"],
+    "expected_cross_file": ["INDIRECT_INJECTION"],
+    "notes": "config/secrets.py holds 4 hardcoded credentials in a module defining no tools and no system prompt (AGT-007) — missed entirely by scanners that only inspect the designated agent file. tools/shell.py has eval() and shell=True (AGT-008, AGT-006) and is overprivileged (AGT-001), with a same-file execution chain (AGT-004). fetch.py + shell.py additionally form a cross-file fetch-to-RCE chain.",
+    "should_be_clean": false
+  },
+  "03_healthcare_triage_agent": {
+    "expected_findings": ["AGT-003", "AGT-005", "AGT-006", "AGT-007"],
+    "expected_cross_file": [],
+    "notes": "prompts/system.py embeds live credentials and instructs the model to trust user-supplied identity (AGT-003, AGT-007). db/queries.py interpolates model input into SQL (AGT-006). memory/store.py persists unvalidated input and replays it into context (AGT-005). All vulnerabilities are contained within single files, so no cross-file chain is expected. KNOWN LIMITATION: AGT-005 is currently a false negative — the memory-poisoning detector does not fire when the memory store is a separate module from the orchestrator.",
+    "should_be_clean": false
+  },
+  "04_ecommerce_agent": {
+    "expected_findings": ["AGT-004", "AGT-006", "AGT-010"],
+    "expected_cross_file": ["ACCOUNT_TAKEOVER"],
+    "notes": "LangChain agent, verifying framework detection on a multi-file project. agent_tools/orders.py issues refunds with no bounds check, no authorisation and no human approval (AGT-010), carrying a deliberately misleading safety comment. accounts.py updates payment methods without ownership verification (AGT-006). get_user + update_payment_method span files to form an account-takeover chain. KNOWN LIMITATION: AGT-010 and AGT-006 are currently false negatives here — the static detectors do not flag financial actions lacking a confirmation gate.",
+    "should_be_clean": false
+  },
+  "05_research_assistant_safe": {
+    "expected_findings": [],
+    "expected_cross_file": [],
+    "notes": "NEGATIVE CONTROL. Deliberately spread across the same number of files as the vulnerable projects, but built correctly: input validated against a strict pattern, credentials read from the environment, a system prompt that refuses extraction and treats retrieved content as untrusted data, and a capability set (READ_LOCAL only) that cannot form any dangerous chain. Any finding here is a false positive.",
+    "should_be_clean": true
+  }
+}

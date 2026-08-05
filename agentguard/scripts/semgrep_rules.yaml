@@ -1,0 +1,102 @@
+# =============================================================================
+# scripts/semgrep_rules.yaml — Local comparison ruleset
+# =============================================================================
+# Used by scripts/compare_tools.py to give Semgrep a fair, reproducible run.
+#
+# Why a local ruleset instead of --config=auto: the registry-hosted "auto"
+# config requires network access to semgrep.dev, is not version-pinned (the
+# ruleset it downloads can change between runs, which undermines a dissertation
+# claiming reproducible results), and behaves differently depending on whether
+# the caller is logged in. A local, checked-in ruleset is inspectable,
+# citable, and gives every run of this comparison the exact same rules.
+#
+# These rules deliberately mirror Bandit's generic checks in scope — the point
+# of the comparison is "how much of the Agent Top 10 do generic tools catch",
+# not "whose generic ruleset is bigger."
+# =============================================================================
+
+rules:
+  - id: python-eval-exec-use
+    languages: [python]
+    severity: ERROR
+    message: "Use of eval() or exec() — arbitrary code execution risk."
+    patterns:
+      - pattern-either:
+          - pattern: eval(...)
+          - pattern: exec(...)
+
+  - id: python-subprocess-shell-true
+    languages: [python]
+    severity: ERROR
+    message: "subprocess call with shell=True — command injection risk."
+    patterns:
+      - pattern-either:
+          - pattern: subprocess.run(..., shell=True, ...)
+          - pattern: subprocess.Popen(..., shell=True, ...)
+          - pattern: subprocess.call(..., shell=True, ...)
+
+  - id: python-os-system
+    languages: [python]
+    severity: ERROR
+    message: "os.system() call — command injection risk if input is untrusted."
+    patterns:
+      - pattern: os.system(...)
+
+  - id: python-hardcoded-secret-assignment
+    languages: [python]
+    severity: ERROR
+    message: "Variable name suggests a hardcoded secret / credential."
+    patterns:
+      - pattern-regex: '(?i)(api_key|apikey|secret|password|passwd|token)\s*=\s*["\047][A-Za-z0-9_\-\.]{8,}["\047]'
+
+  - id: python-sql-string-formatting
+    languages: [python]
+    severity: ERROR
+    message: "SQL query built with string formatting/concatenation — injection risk."
+    patterns:
+      - pattern-either:
+          - pattern: $CURSOR.execute(f"...")
+          - pattern: $CURSOR.execute("..." + $X)
+          - pattern: $CURSOR.execute("...".format(...))
+          - pattern: $CURSOR.execute("...%s..." % ...)
+
+  - id: python-pickle-load
+    languages: [python]
+    severity: WARNING
+    message: "pickle.load/loads on potentially untrusted data — unsafe deserialization."
+    patterns:
+      - pattern-either:
+          - pattern: pickle.load(...)
+          - pattern: pickle.loads(...)
+
+  - id: python-yaml-unsafe-load
+    languages: [python]
+    severity: WARNING
+    message: "yaml.load without SafeLoader — unsafe deserialization."
+    patterns:
+      - pattern: yaml.load($X)
+
+  - id: python-requests-tls-verify-false
+    languages: [python]
+    severity: ERROR
+    message: "TLS verification disabled (verify=False) — MITM risk."
+    patterns:
+      - pattern-either:
+          - pattern: requests.get(..., verify=False, ...)
+          - pattern: requests.post(..., verify=False, ...)
+
+  - id: python-weak-hash
+    languages: [python]
+    severity: WARNING
+    message: "Use of a weak hash function (md5/sha1) for security-sensitive data."
+    patterns:
+      - pattern-either:
+          - pattern: hashlib.md5(...)
+          - pattern: hashlib.sha1(...)
+
+  - id: python-jwt-no-verify
+    languages: [python]
+    severity: ERROR
+    message: "JWT decoded with signature verification disabled."
+    patterns:
+      - pattern: jwt.decode(..., verify=False, ...)

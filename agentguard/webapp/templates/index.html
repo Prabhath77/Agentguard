@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AgentGuard — Scan an Agent</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>AgentGuard</h1>
+    <p class="tagline">Self-validating security scanner for AI agents — MSc Cyber Security research</p>
+  </header>
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="flash">
+        {% for m in messages %}<p>{{ m }}</p>{% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <form action="{{ url_for('scan') }}" method="post" enctype="multipart/form-data" id="scanForm">
+
+    <div class="tabs">
+      <button type="button" class="tab active" data-mode="file">Single file (.py)</button>
+      <button type="button" class="tab" data-mode="zip">Zip archive</button>
+      <button type="button" class="tab" data-mode="folder">Whole folder</button>
+    </div>
+
+    <input type="hidden" name="mode" id="modeField" value="file">
+
+    <div class="panel" data-panel="file">
+      <label class="dropzone" for="fileInputPy">
+        <span class="dz-title">Choose a .py file</span>
+        <span class="dz-sub">One agent script</span>
+      </label>
+      <input type="file" id="fileInputPy" name="single_upload" accept=".py">
+    </div>
+
+    <div class="panel" data-panel="zip" hidden>
+      <label class="dropzone" for="fileInputZip">
+        <span class="dz-title">Choose a .zip archive</span>
+        <span class="dz-sub">A whole project, zipped — the client-handover scenario</span>
+      </label>
+      <input type="file" id="fileInputZip" name="single_upload" accept=".zip">
+    </div>
+
+    <div class="panel" data-panel="folder" hidden>
+      <label class="dropzone" for="folderInput">
+        <span class="dz-title">Choose a folder</span>
+        <span class="dz-sub">Selects every file inside it, subfolders included</span>
+      </label>
+      <input type="file" id="folderInput" name="folder_files"
+             webkitdirectory directory multiple>
+    </div>
+
+    <p class="filename" id="filenameDisplay"></p>
+
+    <label class="llm-toggle">
+      <input type="checkbox" name="use_llm">
+      Enable LLM semantic analysis (requires GEMINI_API_KEY or GROQ_API_KEY set
+      on the server — leave unchecked for the fast, deterministic static scan)
+    </label>
+
+    <button type="submit" class="scan-btn" id="scanBtn">Scan</button>
+  </form>
+
+  <p class="footnote">
+    Uploaded code is scanned in memory and on disk only for the duration of
+    the scan, then deleted. Nothing is retained beyond the generated report.
+  </p>
+</div>
+
+<script>
+const tabs = document.querySelectorAll('.tab');
+const panels = document.querySelectorAll('.panel');
+const modeField = document.getElementById('modeField');
+const filenameDisplay = document.getElementById('filenameDisplay');
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const mode = tab.dataset.mode;
+    modeField.value = mode;
+    panels.forEach(p => p.hidden = (p.dataset.panel !== mode));
+    filenameDisplay.textContent = '';
+  });
+});
+
+document.getElementById('fileInputPy').addEventListener('change', showName);
+document.getElementById('fileInputZip').addEventListener('change', showName);
+document.getElementById('folderInput').addEventListener('change', showFolderCount);
+
+function showName(e) {
+  filenameDisplay.textContent = e.target.files.length
+    ? '✓ ' + e.target.files[0].name : '';
+}
+function showFolderCount(e) {
+  filenameDisplay.textContent = e.target.files.length
+    ? '✓ ' + e.target.files.length + ' file(s) selected' : '';
+}
+
+document.getElementById('scanForm').addEventListener('submit', () => {
+  const btn = document.getElementById('scanBtn');
+  btn.textContent = 'Scanning…';
+  btn.disabled = true;
+});
+</script>
+</body>
+</html>
