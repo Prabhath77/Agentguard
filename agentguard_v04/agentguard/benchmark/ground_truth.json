@@ -1,38 +1,73 @@
 {
   "vuln_01_overprivileged.py": {
-    "expected_vulns": ["AGT-001", "AGT-006", "AGT-008"],
+    "expected_vulns": [
+      "AGT-001",
+      "AGT-006",
+      "AGT-008"
+    ],
     "notes": "Tool exceeds capability with subprocess + filesystem; open(f-string with user_id) is path traversal; shell=True in subprocess"
   },
   "vuln_02_prompt_injection.py": {
-    "expected_vulns": ["AGT-002"],
+    "expected_vulns": [
+      "AGT-002"
+    ],
     "notes": "Tool descriptions contain injection patterns (IMPORTANT:, Ignore previous)"
   },
   "vuln_03_system_leak.py": {
-    "expected_vulns": ["AGT-003", "AGT-007"],
+    "expected_vulns": [
+      "AGT-003",
+      "AGT-007"
+    ],
     "notes": "System prompt has secrets and no extraction protection"
   },
   "vuln_04_tool_chain.py": {
-    "expected_vulns": ["AGT-004"],
+    "expected_vulns": [
+      "AGT-004"
+    ],
     "notes": "read_database + send_email = exfiltration chain"
   },
   "vuln_05_secrets.py": {
-    "expected_vulns": ["AGT-007"],
+    "expected_vulns": [
+      "AGT-007"
+    ],
     "notes": "Multiple hardcoded API keys and passwords"
   },
   "vuln_06_code_exec.py": {
-    "expected_vulns": ["AGT-008", "AGT-006"],
+    "expected_vulns": [
+      "AGT-008",
+      "AGT-006"
+    ],
     "notes": "eval() and exec() in tools, plus shell=True without validation"
   },
   "vuln_07_no_validation.py": {
-    "expected_vulns": ["AGT-006", "AGT-009"],
+    "expected_vulns": [
+      "AGT-006",
+      "AGT-009"
+    ],
     "notes": "SQL injection, path traversal, SSRF, indirect prompt injection"
   },
   "vuln_08_memory_poison.py": {
-    "expected_vulns": ["AGT-005"],
-    "notes": "Memory poisoning via save_note + get_notes chain — stateful exploit required"
+    "expected_vulns": [
+      "AGT-005"
+    ],
+    "notes": "Memory poisoning via save_note + get_notes chain \u2014 stateful exploit required"
   },
   "safe_agent.py": {
     "expected_vulns": [],
-    "notes": "Negative control — scanner should find nothing"
+    "notes": "Negative control \u2014 scanner should find nothing"
+  },
+  "vuln_09_comment_secret.py": {
+    "expected_vulns": [
+      "AGT-007"
+    ],
+    "notes": "Anthropic API key and a DB connection-string password both left in comments, not live code \u2014 tests whether the secret detector still catches values outside actual variable assignments."
+  },
+  "vuln_10_devious_comments.py": {
+    "expected_vulns": [
+      "AGT-007",
+      "AGT-006",
+      "AGT-008"
+    ],
+    "notes": "A secret in a non-standard token format (not a typical key/password regex shape); a genuine SQL injection immediately below a comment falsely claiming the input was already sanitised; and a genuine eval() code-execution path immediately below a comment falsely claiming it is safe."
   }
 }

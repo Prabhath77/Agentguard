@@ -1,0 +1,113 @@
+{
+  "meta": {
+    "benchmark_dir": "benchmark",
+    "agent_top_10": [
+      "AGT-001",
+      "AGT-002",
+      "AGT-003",
+      "AGT-004",
+      "AGT-005",
+      "AGT-006",
+      "AGT-007",
+      "AGT-008",
+      "AGT-009",
+      "AGT-010"
+    ]
+  },
+  "tools": {
+    "AgentGuard": {
+      "score": {
+        "tp": 17,
+        "fp": 5,
+        "fn": 0,
+        "precision": 0.773,
+        "recall": 1.0,
+        "f1": 0.872,
+        "agt_classes_covered": [
+          "AGT-001",
+          "AGT-002",
+          "AGT-003",
+          "AGT-004",
+          "AGT-005",
+          "AGT-006",
+          "AGT-007",
+          "AGT-008",
+          "AGT-009"
+        ],
+        "num_classes_covered": 9
+      },
+      "time_s": 0.04
+    },
+    "Bandit": {
+      "score": {
+        "tp": 6,
+        "fp": 0,
+        "fn": 11,
+        "precision": 1.0,
+        "recall": 0.353,
+        "f1": 0.522,
+        "agt_classes_covered": [
+          "AGT-006",
+          "AGT-007",
+          "AGT-008"
+        ],
+        "num_classes_covered": 3
+      },
+      "time_s": 0.83
+    },
+    "Semgrep": {
+      "score": {
+        "tp": 5,
+        "fp": 1,
+        "fn": 12,
+        "precision": 0.833,
+        "recall": 0.294,
+        "f1": 0.435,
+        "agt_classes_covered": [
+          "AGT-006",
+          "AGT-008"
+        ],
+        "num_classes_covered": 2
+      },
+      "time_s": 18.93
+    }
+  },
+  "agent_top10_coverage": {
+    "AgentGuard": {
+      "AGT-001": true,
+      "AGT-002": true,
+      "AGT-003": true,
+      "AGT-004": true,
+      "AGT-005": true,
+      "AGT-006": true,
+      "AGT-007": true,
+      "AGT-008": true,
+      "AGT-009": true,
+      "AGT-010": false
+    },
+    "Bandit": {
+      "AGT-001": false,
+      "AGT-002": false,
+      "AGT-003": false,
+      "AGT-004": false,
+      "AGT-005": false,
+      "AGT-006": true,
+      "AGT-007": true,
+      "AGT-008": true,
+      "AGT-009": false,
+      "AGT-010": false
+    },
+    "Semgrep": {
+      "AGT-001": false,
+      "AGT-002": false,
+      "AGT-003": false,
+      "AGT-004": false,
+      "AGT-005": false,
+      "AGT-006": true,
+      "AGT-007": false,
+      "AGT-008": true,
+      "AGT-009": false,
+      "AGT-010": false
+    }
+  }
+}

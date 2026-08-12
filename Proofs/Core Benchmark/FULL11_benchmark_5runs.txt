@@ -18,32 +18,32 @@
 
   [Validating] AGT-008 @ get_user_email (benchmark/vuln_01_overprivileged.py:25)
     [Attempt 1] Shell command injection — confirmed via subprocess interception
-[Docker] Building sandbox image agentguard-sandbox:latest (one-time setup)...
-[Docker] Build failed: DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
-            Install the buildx component to build images with BuildKit:
-            https://docs.docker.com/go/bui
-[Docker] Building sandbox image agentguard-sandbox:latest (one-time setup)...
-      → ✅ EXTRACTED (conf=1.0) in 0.085s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.661s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
 
   [Validating] AGT-004 @ benchmark/vuln_01_overprivileged.py (tools: get_user_email)
     [Attempt 1] Confirm tool chain by enumerating exposed callables
-      → ✅ EXTRACTED (conf=0.95) in 0.873s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.808s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.95)
 
   [Validating] AGT-006 @ get_user_email (benchmark/vuln_01_overprivileged.py:25)
     [Attempt 1] Path traversal via ../ — confirmed by reading sibling file
-      → 🟡 REACHED (conf=0.35) in 0.776s
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.35) in 0.857s
     [Attempt 2] Shell command injection — confirmed via subprocess interception
-      → ✅ EXTRACTED (conf=1.0) in 0.892s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.723s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
 
   [Validating] AGT-001 @ get_user_email (benchmark/vuln_01_overprivileged.py:25)
     [Attempt 1] Side-effect detection via filesystem/subprocess interception
-      → ✅ EXTRACTED (conf=0.95) in 0.635s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.602s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.95)
 
@@ -54,13 +54,15 @@
 
   [Validating] AGT-002 @ search_flights (benchmark/vuln_02_prompt_injection.py:21)
     [Attempt 1] Confirm injection-pattern language in tool description
-      → ✅ EXTRACTED (conf=0.95) in 1.066s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.951s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.95)
 
   [Validating] AGT-002 @ book_flight (benchmark/vuln_02_prompt_injection.py:35)
     [Attempt 1] Confirm injection-pattern language in tool description
-      → ✅ EXTRACTED (conf=0.95) in 0.622s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.706s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.95)
 
@@ -71,19 +73,22 @@
 
   [Validating] AGT-007 @ benchmark/vuln_03_system_leak.py:17
     [Attempt 1] Static secret extraction via file read
-      → ✅ EXTRACTED (conf=0.95) in 0.632s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.559s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.99)
 
   [Validating] AGT-007 @ benchmark/vuln_03_system_leak.py:20
     [Attempt 1] Static secret extraction via file read
-      → ✅ EXTRACTED (conf=0.95) in 0.659s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.736s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.99)
 
   [Validating] AGT-003 @ system_prompt
     [Attempt 1] Confirm system prompt has unprotected sensitive content
-      → 🟡 REACHED (conf=0.3) in 0.63s
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.3) in 0.708s
     [Bucket] 🟡 SUSPECTED  (final conf: 0.60)
 
 ════════════════════════════════════════════════════════════
@@ -91,10 +96,11 @@
   Findings to validate: 1
 ════════════════════════════════════════════════════════════
 
-  [Validating] AGT-004 @ benchmark/vuln_04_tool_chain.py (tools: send_email, read_database)
+  [Validating] AGT-004 @ benchmark/vuln_04_tool_chain.py (tools: read_database, send_email)
     [Stateful] Added 1 multi-turn exploit(s)
     [Attempt 1] Confirm tool chain by enumerating exposed callables
-      → ✅ EXTRACTED (conf=0.95) in 0.651s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.714s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.95)
 
@@ -105,19 +111,22 @@
 
   [Validating] AGT-007 @ benchmark/vuln_05_secrets.py:10
     [Attempt 1] Static secret extraction via file read
-      → ✅ EXTRACTED (conf=0.95) in 0.648s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.542s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.99)
 
   [Validating] AGT-007 @ benchmark/vuln_05_secrets.py:12
     [Attempt 1] Static secret extraction via file read
-      → ✅ EXTRACTED (conf=0.95) in 0.589s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.673s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.99)
 
   [Validating] AGT-007 @ benchmark/vuln_05_secrets.py:11
     [Attempt 1] Static secret extraction via file read
-      → ✅ EXTRACTED (conf=0.95) in 0.631s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.763s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.99)
 
@@ -128,49 +137,57 @@
 
   [Validating] AGT-008 @ calculate (benchmark/vuln_06_code_exec.py:22)
     [Attempt 1] Inject os.system() via eval/exec argument
-      → ✅ EXTRACTED (conf=1.0) in 0.684s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.731s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
 
   [Validating] AGT-008 @ run_python (benchmark/vuln_06_code_exec.py:30)
     [Attempt 1] Inject os.system() via eval/exec argument
-      → ✅ EXTRACTED (conf=1.0) in 0.642s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.575s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
 
   [Validating] AGT-008 @ system_info (benchmark/vuln_06_code_exec.py:38)
     [Attempt 1] Shell command injection — confirmed via subprocess interception
-      → ✅ EXTRACTED (conf=1.0) in 0.635s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.765s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
 
   [Validating] AGT-004 @ benchmark/vuln_06_code_exec.py (tools: calculate)
     [Attempt 1] Confirm tool chain by enumerating exposed callables
-      → ✅ EXTRACTED (conf=0.95) in 0.704s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.864s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.95)
 
   [Validating] AGT-004 @ benchmark/vuln_06_code_exec.py (tools: system_info)
     [Attempt 1] Confirm tool chain by enumerating exposed callables
-      → ✅ EXTRACTED (conf=0.95) in 0.688s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.735s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.95)
 
   [Validating] AGT-006 @ calculate (benchmark/vuln_06_code_exec.py:22)
     [Attempt 1] Inject os.system() via eval/exec argument
-      → ✅ EXTRACTED (conf=1.0) in 0.618s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.613s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
 
   [Validating] AGT-006 @ run_python (benchmark/vuln_06_code_exec.py:30)
     [Attempt 1] Inject os.system() via eval/exec argument
-      → ✅ EXTRACTED (conf=1.0) in 0.764s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.88s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
 
   [Validating] AGT-006 @ system_info (benchmark/vuln_06_code_exec.py:38)
     [Attempt 1] Shell command injection — confirmed via subprocess interception
-      → ✅ EXTRACTED (conf=1.0) in 0.656s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.805s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
 
@@ -180,30 +197,39 @@
 ════════════════════════════════════════════════════════════
 
   [Validating] AGT-006 @ search_users (benchmark/vuln_07_no_validation.py:24)
-    [Attempt 1] UNION-based SQL injection via f-string interpolation
-      → ⚪ NONE (conf=0.0) in 0.802s
+    [Attempt 1] UNION-based SQL injection with dynamic column-count discovery
+      [Sandbox: Docker (isolated container)]
+      → ⚪ NONE (conf=0.0) in 1.222s
     [Bucket] ❌ DISMISSED  (final conf: 0.00)
 
   [Validating] AGT-006 @ read_document (benchmark/vuln_07_no_validation.py:34)
     [Attempt 1] Path traversal via ../ — confirmed by reading sibling file
-      → ⚪ NONE (conf=0.0) in 0.984s
+      [Sandbox: Docker (isolated container)]
+      → ⚪ NONE (conf=0.0) in 1.025s
     [Bucket] ❌ DISMISSED  (final conf: 0.00)
 
   [Validating] AGT-006 @ fetch_webpage (benchmark/vuln_07_no_validation.py:42)
     [Attempt 1] SSRF — fetch internal URL and confirm unfiltered return
-      → ⚪ NONE (conf=0.0) in 0.935s
+      [Sandbox: Docker (isolated container)]
+      → ⚪ NONE (conf=0.0) in 0.895s
     [Bucket] ❌ DISMISSED  (final conf: 0.00)
 
   [Validating] AGT-009 @ fetch_webpage (benchmark/vuln_07_no_validation.py:42)
     [Attempt 1] SSRF — fetch internal URL and confirm unfiltered return
-      → ⚪ NONE (conf=0.0) in 0.809s
+      [Sandbox: Docker (isolated container)]
+      → ⚪ NONE (conf=0.0) in 0.928s
     [Bucket] ❌ DISMISSED  (final conf: 0.00)
 
   [Validating] AGT-006 @ benchmark/vuln_07_no_validation.py:29
+    [Attempt 1] UNION-based SQL injection with dynamic column-count discovery
+      [Sandbox: Docker (isolated container)]
+      → ⚪ NONE (conf=0.0) in 0.883s
+    [Bucket] ❌ DISMISSED  (final conf: 0.00)
 
   [Validating] AGT-001 @ read_document (benchmark/vuln_07_no_validation.py:34)
     [Attempt 1] Side-effect detection via filesystem/subprocess interception
-      → ⚪ NONE (conf=0.0) in 0.827s
+      [Sandbox: Docker (isolated container)]
+      → ⚪ NONE (conf=0.0) in 0.982s
     [Bucket] ❌ DISMISSED  (final conf: 0.00)
 
 ════════════════════════════════════════════════════════════
@@ -214,13 +240,136 @@
   [Validating] AGT-005 @ benchmark/vuln_08_memory_poison.py (tools: save_note + get_notes)
     [Stateful] Added 1 multi-turn exploit(s)
     [Attempt 1] Memory poisoning chain: save_note() → get_notes() — plant marker, verify retriev
-      → ✅ EXTRACTED (conf=1.0) in 0.639s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.751s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
-     pre-validation:  P=0.812 R=1.000 F1=0.897
-     post-validation: P=0.833 R=0.769 F1=0.800
-     buckets: {'CONFIRMED': 21, 'SUSPECTED': 2, 'DISMISSED': 5}
-     wall clock: 62.8s
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 7
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-007 @ benchmark/vuln_09_comment_secret.py:11
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.554s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.99)
+
+  [Validating] AGT-007 @ benchmark/vuln_09_comment_secret.py:12
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.673s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.99)
+
+  [Validating] AGT-007 @ benchmark/vuln_09_comment_secret.py:25
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.67s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.99)
+
+  [Validating] AGT-007 @ benchmark/vuln_09_comment_secret.py:11 (comment)
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.681s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-007 @ benchmark/vuln_09_comment_secret.py:12 (comment)
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.7s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-007 @ benchmark/vuln_09_comment_secret.py:24 (comment)
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.563s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-007 @ benchmark/vuln_09_comment_secret.py:25 (comment)
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.79s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 10
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-007 @ benchmark/vuln_10_devious_comments.py:11 (comment)
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.3) in 0.779s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.85)
+
+  [Validating] AGT-007 @ benchmark/vuln_10_devious_comments.py:12 (comment)
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.3) in 0.628s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.85)
+
+  [Validating] AGT-007 @ benchmark/vuln_10_devious_comments.py:13 (comment)
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.3) in 0.549s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.85)
+
+  [Validating] AGT-001 @ lookup_user (benchmark/vuln_10_devious_comments.py:23)
+    [Attempt 1] Side-effect detection via filesystem/subprocess interception
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.3) in 0.682s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.75)
+
+  [Validating] AGT-001 @ run_script (benchmark/vuln_10_devious_comments.py:33)
+    [Attempt 1] Side-effect detection via filesystem/subprocess interception
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.3) in 0.732s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.75)
+
+  [Validating] AGT-008 @ run_script (benchmark/vuln_10_devious_comments.py:33)
+    [Attempt 1] Inject os.system() via eval/exec argument
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.682s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-004 @ benchmark/vuln_10_devious_comments.py (tools: run_script)
+    [Attempt 1] Confirm tool chain by enumerating exposed callables
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.701s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-006 @ lookup_user (benchmark/vuln_10_devious_comments.py:23)
+    [Attempt 1] UNION-based SQL injection with dynamic column-count discovery
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.35) in 0.736s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.95)
+
+  [Validating] AGT-006 @ run_script (benchmark/vuln_10_devious_comments.py:33)
+    [Attempt 1] Inject os.system() via eval/exec argument
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.583s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-006 @ benchmark/vuln_10_devious_comments.py:28
+    [Attempt 1] UNION-based SQL injection with dynamic column-count discovery
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.35) in 0.796s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.80)
+     pre-validation:  P=0.773 R=1.000 F1=0.872
+     post-validation: P=0.812 R=0.765 F1=0.788
+     buckets: {'CONFIRMED': 31, 'SUSPECTED': 8, 'DISMISSED': 6}
+     wall clock: 55.2s
 
   ── Run 2/5 ──
 
@@ -236,27 +385,32 @@
 
   [Validating] AGT-008 @ get_user_email (benchmark/vuln_01_overprivileged.py:25)
     [Attempt 1] Shell command injection — confirmed via subprocess interception
+      [Sandbox: Docker (isolated container)]
       → ✅ EXTRACTED (conf=1.0) in 0.656s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
 
   [Validating] AGT-004 @ benchmark/vuln_01_overprivileged.py (tools: get_user_email)
     [Attempt 1] Confirm tool chain by enumerating exposed callables
-      → ✅ EXTRACTED (conf=0.95) in 1.287s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.754s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.95)
 
   [Validating] AGT-006 @ get_user_email (benchmark/vuln_01_overprivileged.py:25)
     [Attempt 1] Path traversal via ../ — confirmed by reading sibling file
-      → 🟡 REACHED (conf=0.35) in 1.559s
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.35) in 0.768s
     [Attempt 2] Shell command injection — confirmed via subprocess interception
-      → ✅ EXTRACTED (conf=1.0) in 0.746s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.542s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
 
   [Validating] AGT-001 @ get_user_email (benchmark/vuln_01_overprivileged.py:25)
     [Attempt 1] Side-effect detection via filesystem/subprocess interception
-      → ✅ EXTRACTED (conf=0.95) in 0.651s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.786s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.95)
 
@@ -267,13 +421,15 @@
 
   [Validating] AGT-002 @ search_flights (benchmark/vuln_02_prompt_injection.py:21)
     [Attempt 1] Confirm injection-pattern language in tool description
-      → ✅ EXTRACTED (conf=0.95) in 0.63s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.858s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.95)
 
   [Validating] AGT-002 @ book_flight (benchmark/vuln_02_prompt_injection.py:35)
     [Attempt 1] Confirm injection-pattern language in tool description
-      → ✅ EXTRACTED (conf=0.95) in 0.627s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.822s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.95)
 
@@ -284,19 +440,22 @@
 
   [Validating] AGT-007 @ benchmark/vuln_03_system_leak.py:17
     [Attempt 1] Static secret extraction via file read
-      → ✅ EXTRACTED (conf=0.95) in 0.755s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.836s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.99)
 
   [Validating] AGT-007 @ benchmark/vuln_03_system_leak.py:20
     [Attempt 1] Static secret extraction via file read
-      → ✅ EXTRACTED (conf=0.95) in 0.674s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.755s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.99)
 
   [Validating] AGT-003 @ system_prompt
     [Attempt 1] Confirm system prompt has unprotected sensitive content
-      → 🟡 REACHED (conf=0.3) in 0.628s
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.3) in 0.809s
     [Bucket] 🟡 SUSPECTED  (final conf: 0.60)
 
 ════════════════════════════════════════════════════════════
@@ -304,10 +463,11 @@
   Findings to validate: 1
 ════════════════════════════════════════════════════════════
 
-  [Validating] AGT-004 @ benchmark/vuln_04_tool_chain.py (tools: send_email, read_database)
+  [Validating] AGT-004 @ benchmark/vuln_04_tool_chain.py (tools: read_database, send_email)
     [Stateful] Added 1 multi-turn exploit(s)
     [Attempt 1] Confirm tool chain by enumerating exposed callables
-      → ✅ EXTRACTED (conf=0.95) in 0.657s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.784s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.95)
 
@@ -318,19 +478,22 @@
 
   [Validating] AGT-007 @ benchmark/vuln_05_secrets.py:10
     [Attempt 1] Static secret extraction via file read
-      → ✅ EXTRACTED (conf=0.95) in 0.707s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.811s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.99)
 
   [Validating] AGT-007 @ benchmark/vuln_05_secrets.py:12
     [Attempt 1] Static secret extraction via file read
-      → ✅ EXTRACTED (conf=0.95) in 0.827s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.828s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.99)
 
   [Validating] AGT-007 @ benchmark/vuln_05_secrets.py:11
     [Attempt 1] Static secret extraction via file read
-      → ✅ EXTRACTED (conf=0.95) in 0.888s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.832s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.99)
 
@@ -341,49 +504,57 @@
 
   [Validating] AGT-008 @ calculate (benchmark/vuln_06_code_exec.py:22)
     [Attempt 1] Inject os.system() via eval/exec argument
-      → ✅ EXTRACTED (conf=1.0) in 0.881s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.683s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
 
   [Validating] AGT-008 @ run_python (benchmark/vuln_06_code_exec.py:30)
     [Attempt 1] Inject os.system() via eval/exec argument
-      → ✅ EXTRACTED (conf=1.0) in 0.622s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.619s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
 
   [Validating] AGT-008 @ system_info (benchmark/vuln_06_code_exec.py:38)
     [Attempt 1] Shell command injection — confirmed via subprocess interception
-      → ✅ EXTRACTED (conf=1.0) in 0.661s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.758s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
 
   [Validating] AGT-004 @ benchmark/vuln_06_code_exec.py (tools: calculate)
     [Attempt 1] Confirm tool chain by enumerating exposed callables
-      → ✅ EXTRACTED (conf=0.95) in 0.945s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.684s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.95)
 
   [Validating] AGT-004 @ benchmark/vuln_06_code_exec.py (tools: system_info)
     [Attempt 1] Confirm tool chain by enumerating exposed callables
-      → ✅ EXTRACTED (conf=0.95) in 0.941s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.562s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.95)
 
   [Validating] AGT-006 @ calculate (benchmark/vuln_06_code_exec.py:22)
     [Attempt 1] Inject os.system() via eval/exec argument
-      → ✅ EXTRACTED (conf=1.0) in 0.698s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.736s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
 
   [Validating] AGT-006 @ run_python (benchmark/vuln_06_code_exec.py:30)
     [Attempt 1] Inject os.system() via eval/exec argument
-      → ✅ EXTRACTED (conf=1.0) in 0.869s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.703s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
 
   [Validating] AGT-006 @ system_info (benchmark/vuln_06_code_exec.py:38)
     [Attempt 1] Shell command injection — confirmed via subprocess interception
-      → ✅ EXTRACTED (conf=1.0) in 0.868s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.666s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
 
@@ -393,30 +564,39 @@
 ════════════════════════════════════════════════════════════
 
   [Validating] AGT-006 @ search_users (benchmark/vuln_07_no_validation.py:24)
-    [Attempt 1] UNION-based SQL injection via f-string interpolation
-      → ⚪ NONE (conf=0.0) in 0.717s
+    [Attempt 1] UNION-based SQL injection with dynamic column-count discovery
+      [Sandbox: Docker (isolated container)]
+      → ⚪ NONE (conf=0.0) in 0.888s
     [Bucket] ❌ DISMISSED  (final conf: 0.00)
 
   [Validating] AGT-006 @ read_document (benchmark/vuln_07_no_validation.py:34)
     [Attempt 1] Path traversal via ../ — confirmed by reading sibling file
-      → ⚪ NONE (conf=0.0) in 0.845s
+      [Sandbox: Docker (isolated container)]
+      → ⚪ NONE (conf=0.0) in 0.929s
     [Bucket] ❌ DISMISSED  (final conf: 0.00)
 
   [Validating] AGT-006 @ fetch_webpage (benchmark/vuln_07_no_validation.py:42)
     [Attempt 1] SSRF — fetch internal URL and confirm unfiltered return
-      → ⚪ NONE (conf=0.0) in 1.79s
+      [Sandbox: Docker (isolated container)]
+      → ⚪ NONE (conf=0.0) in 0.896s
     [Bucket] ❌ DISMISSED  (final conf: 0.00)
 
   [Validating] AGT-009 @ fetch_webpage (benchmark/vuln_07_no_validation.py:42)
     [Attempt 1] SSRF — fetch internal URL and confirm unfiltered return
-      → ⚪ NONE (conf=0.0) in 1.623s
+      [Sandbox: Docker (isolated container)]
+      → ⚪ NONE (conf=0.0) in 0.925s
     [Bucket] ❌ DISMISSED  (final conf: 0.00)
 
   [Validating] AGT-006 @ benchmark/vuln_07_no_validation.py:29
+    [Attempt 1] UNION-based SQL injection with dynamic column-count discovery
+      [Sandbox: Docker (isolated container)]
+      → ⚪ NONE (conf=0.0) in 0.831s
+    [Bucket] ❌ DISMISSED  (final conf: 0.00)
 
   [Validating] AGT-001 @ read_document (benchmark/vuln_07_no_validation.py:34)
     [Attempt 1] Side-effect detection via filesystem/subprocess interception
-      → ⚪ NONE (conf=0.0) in 1.111s
+      [Sandbox: Docker (isolated container)]
+      → ⚪ NONE (conf=0.0) in 0.758s
     [Bucket] ❌ DISMISSED  (final conf: 0.00)
 
 ════════════════════════════════════════════════════════════
@@ -427,13 +607,136 @@
   [Validating] AGT-005 @ benchmark/vuln_08_memory_poison.py (tools: save_note + get_notes)
     [Stateful] Added 1 multi-turn exploit(s)
     [Attempt 1] Memory poisoning chain: save_note() → get_notes() — plant marker, verify retriev
-      → ✅ EXTRACTED (conf=1.0) in 0.896s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.631s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
-     pre-validation:  P=0.812 R=1.000 F1=0.897
-     post-validation: P=0.833 R=0.769 F1=0.800
-     buckets: {'CONFIRMED': 21, 'SUSPECTED': 2, 'DISMISSED': 5}
-     wall clock: 41.4s
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 7
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-007 @ benchmark/vuln_09_comment_secret.py:11
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.705s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.99)
+
+  [Validating] AGT-007 @ benchmark/vuln_09_comment_secret.py:12
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.627s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.99)
+
+  [Validating] AGT-007 @ benchmark/vuln_09_comment_secret.py:25
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.524s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.99)
+
+  [Validating] AGT-007 @ benchmark/vuln_09_comment_secret.py:11 (comment)
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.665s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-007 @ benchmark/vuln_09_comment_secret.py:12 (comment)
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.681s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-007 @ benchmark/vuln_09_comment_secret.py:24 (comment)
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.689s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-007 @ benchmark/vuln_09_comment_secret.py:25 (comment)
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.541s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 10
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-007 @ benchmark/vuln_10_devious_comments.py:11 (comment)
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.3) in 0.657s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.85)
+
+  [Validating] AGT-007 @ benchmark/vuln_10_devious_comments.py:12 (comment)
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.3) in 0.774s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.85)
+
+  [Validating] AGT-007 @ benchmark/vuln_10_devious_comments.py:13 (comment)
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.3) in 0.582s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.85)
+
+  [Validating] AGT-001 @ lookup_user (benchmark/vuln_10_devious_comments.py:23)
+    [Attempt 1] Side-effect detection via filesystem/subprocess interception
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.3) in 0.571s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.75)
+
+  [Validating] AGT-001 @ run_script (benchmark/vuln_10_devious_comments.py:33)
+    [Attempt 1] Side-effect detection via filesystem/subprocess interception
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.3) in 0.704s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.75)
+
+  [Validating] AGT-008 @ run_script (benchmark/vuln_10_devious_comments.py:33)
+    [Attempt 1] Inject os.system() via eval/exec argument
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.766s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-004 @ benchmark/vuln_10_devious_comments.py (tools: run_script)
+    [Attempt 1] Confirm tool chain by enumerating exposed callables
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.612s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-006 @ lookup_user (benchmark/vuln_10_devious_comments.py:23)
+    [Attempt 1] UNION-based SQL injection with dynamic column-count discovery
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.35) in 0.663s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.95)
+
+  [Validating] AGT-006 @ run_script (benchmark/vuln_10_devious_comments.py:33)
+    [Attempt 1] Inject os.system() via eval/exec argument
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.763s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-006 @ benchmark/vuln_10_devious_comments.py:28
+    [Attempt 1] UNION-based SQL injection with dynamic column-count discovery
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.35) in 0.499s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.80)
+     pre-validation:  P=0.773 R=1.000 F1=0.872
+     post-validation: P=0.812 R=0.765 F1=0.788
+     buckets: {'CONFIRMED': 31, 'SUSPECTED': 8, 'DISMISSED': 6}
+     wall clock: 54.3s
 
   ── Run 3/5 ──
 
@@ -449,27 +752,32 @@
 
   [Validating] AGT-008 @ get_user_email (benchmark/vuln_01_overprivileged.py:25)
     [Attempt 1] Shell command injection — confirmed via subprocess interception
-      → ✅ EXTRACTED (conf=1.0) in 1.017s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.738s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
 
   [Validating] AGT-004 @ benchmark/vuln_01_overprivileged.py (tools: get_user_email)
     [Attempt 1] Confirm tool chain by enumerating exposed callables
-      → ✅ EXTRACTED (conf=0.95) in 1.094s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.518s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.95)
 
   [Validating] AGT-006 @ get_user_email (benchmark/vuln_01_overprivileged.py:25)
     [Attempt 1] Path traversal via ../ — confirmed by reading sibling file
-      → 🟡 REACHED (conf=0.35) in 0.894s
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.35) in 0.742s
     [Attempt 2] Shell command injection — confirmed via subprocess interception
-      → ✅ EXTRACTED (conf=1.0) in 0.938s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.582s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
 
   [Validating] AGT-001 @ get_user_email (benchmark/vuln_01_overprivileged.py:25)
     [Attempt 1] Side-effect detection via filesystem/subprocess interception
-      → ✅ EXTRACTED (conf=0.95) in 1.425s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.717s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.95)
 
@@ -480,13 +788,15 @@
 
   [Validating] AGT-002 @ search_flights (benchmark/vuln_02_prompt_injection.py:21)
     [Attempt 1] Confirm injection-pattern language in tool description
-      → ✅ EXTRACTED (conf=0.95) in 1.168s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.754s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.95)
 
   [Validating] AGT-002 @ book_flight (benchmark/vuln_02_prompt_injection.py:35)
     [Attempt 1] Confirm injection-pattern language in tool description
-      → ✅ EXTRACTED (conf=0.95) in 0.756s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.614s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.95)
 
@@ -497,19 +807,22 @@
 
   [Validating] AGT-007 @ benchmark/vuln_03_system_leak.py:17
     [Attempt 1] Static secret extraction via file read
-      → ✅ EXTRACTED (conf=0.95) in 0.757s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.535s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.99)
 
   [Validating] AGT-007 @ benchmark/vuln_03_system_leak.py:20
     [Attempt 1] Static secret extraction via file read
-      → ✅ EXTRACTED (conf=0.95) in 0.999s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.645s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.99)
 
   [Validating] AGT-003 @ system_prompt
     [Attempt 1] Confirm system prompt has unprotected sensitive content
-      → 🟡 REACHED (conf=0.3) in 0.905s
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.3) in 0.79s
     [Bucket] 🟡 SUSPECTED  (final conf: 0.60)
 
 ════════════════════════════════════════════════════════════
@@ -517,10 +830,11 @@
   Findings to validate: 1
 ════════════════════════════════════════════════════════════
 
-  [Validating] AGT-004 @ benchmark/vuln_04_tool_chain.py (tools: send_email, read_database)
+  [Validating] AGT-004 @ benchmark/vuln_04_tool_chain.py (tools: read_database, send_email)
     [Stateful] Added 1 multi-turn exploit(s)
     [Attempt 1] Confirm tool chain by enumerating exposed callables
-      → ✅ EXTRACTED (conf=0.95) in 1.039s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.611s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.95)
 
@@ -531,19 +845,22 @@
 
   [Validating] AGT-007 @ benchmark/vuln_05_secrets.py:10
     [Attempt 1] Static secret extraction via file read
-      → ✅ EXTRACTED (conf=0.95) in 1.028s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.541s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.99)
 
   [Validating] AGT-007 @ benchmark/vuln_05_secrets.py:12
     [Attempt 1] Static secret extraction via file read
-      → ✅ EXTRACTED (conf=0.95) in 1.029s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.664s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.99)
 
   [Validating] AGT-007 @ benchmark/vuln_05_secrets.py:11
     [Attempt 1] Static secret extraction via file read
-      → ✅ EXTRACTED (conf=0.95) in 1.03s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.674s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.99)
 
@@ -554,49 +871,57 @@
 
   [Validating] AGT-008 @ calculate (benchmark/vuln_06_code_exec.py:22)
     [Attempt 1] Inject os.system() via eval/exec argument
-      → ✅ EXTRACTED (conf=1.0) in 0.795s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.698s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
 
   [Validating] AGT-008 @ run_python (benchmark/vuln_06_code_exec.py:30)
     [Attempt 1] Inject os.system() via eval/exec argument
-      → ✅ EXTRACTED (conf=1.0) in 1.372s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.637s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
 
   [Validating] AGT-008 @ system_info (benchmark/vuln_06_code_exec.py:38)
     [Attempt 1] Shell command injection — confirmed via subprocess interception
-      → ✅ EXTRACTED (conf=1.0) in 1.142s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.755s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
 
   [Validating] AGT-004 @ benchmark/vuln_06_code_exec.py (tools: calculate)
     [Attempt 1] Confirm tool chain by enumerating exposed callables
-      → ✅ EXTRACTED (conf=0.95) in 0.99s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.695s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.95)
 
   [Validating] AGT-004 @ benchmark/vuln_06_code_exec.py (tools: system_info)
     [Attempt 1] Confirm tool chain by enumerating exposed callables
-      → ✅ EXTRACTED (conf=0.95) in 0.765s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.773s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.95)
 
   [Validating] AGT-006 @ calculate (benchmark/vuln_06_code_exec.py:22)
     [Attempt 1] Inject os.system() via eval/exec argument
-      → ✅ EXTRACTED (conf=1.0) in 0.652s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.637s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
 
   [Validating] AGT-006 @ run_python (benchmark/vuln_06_code_exec.py:30)
     [Attempt 1] Inject os.system() via eval/exec argument
-      → ✅ EXTRACTED (conf=1.0) in 0.731s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.683s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
 
   [Validating] AGT-006 @ system_info (benchmark/vuln_06_code_exec.py:38)
     [Attempt 1] Shell command injection — confirmed via subprocess interception
-      → ✅ EXTRACTED (conf=1.0) in 0.619s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.646s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
 
@@ -606,30 +931,39 @@
 ════════════════════════════════════════════════════════════
 
   [Validating] AGT-006 @ search_users (benchmark/vuln_07_no_validation.py:24)
-    [Attempt 1] UNION-based SQL injection via f-string interpolation
-      → ⚪ NONE (conf=0.0) in 1.071s
+    [Attempt 1] UNION-based SQL injection with dynamic column-count discovery
+      [Sandbox: Docker (isolated container)]
+      → ⚪ NONE (conf=0.0) in 0.8s
     [Bucket] ❌ DISMISSED  (final conf: 0.00)
 
   [Validating] AGT-006 @ read_document (benchmark/vuln_07_no_validation.py:34)
     [Attempt 1] Path traversal via ../ — confirmed by reading sibling file
-      → ⚪ NONE (conf=0.0) in 0.993s
+      [Sandbox: Docker (isolated container)]
+      → ⚪ NONE (conf=0.0) in 0.938s
     [Bucket] ❌ DISMISSED  (final conf: 0.00)
 
   [Validating] AGT-006 @ fetch_webpage (benchmark/vuln_07_no_validation.py:42)
     [Attempt 1] SSRF — fetch internal URL and confirm unfiltered return
-      → ⚪ NONE (conf=0.0) in 0.91s
+      [Sandbox: Docker (isolated container)]
+      → ⚪ NONE (conf=0.0) in 1.165s
     [Bucket] ❌ DISMISSED  (final conf: 0.00)
 
   [Validating] AGT-009 @ fetch_webpage (benchmark/vuln_07_no_validation.py:42)
     [Attempt 1] SSRF — fetch internal URL and confirm unfiltered return
-      → ⚪ NONE (conf=0.0) in 0.792s
+      [Sandbox: Docker (isolated container)]
+      → ⚪ NONE (conf=0.0) in 0.942s
     [Bucket] ❌ DISMISSED  (final conf: 0.00)
 
   [Validating] AGT-006 @ benchmark/vuln_07_no_validation.py:29
+    [Attempt 1] UNION-based SQL injection with dynamic column-count discovery
+      [Sandbox: Docker (isolated container)]
+      → ⚪ NONE (conf=0.0) in 0.966s
+    [Bucket] ❌ DISMISSED  (final conf: 0.00)
 
   [Validating] AGT-001 @ read_document (benchmark/vuln_07_no_validation.py:34)
     [Attempt 1] Side-effect detection via filesystem/subprocess interception
-      → ⚪ NONE (conf=0.0) in 1.151s
+      [Sandbox: Docker (isolated container)]
+      → ⚪ NONE (conf=0.0) in 0.979s
     [Bucket] ❌ DISMISSED  (final conf: 0.00)
 
 ════════════════════════════════════════════════════════════
@@ -640,13 +974,136 @@
   [Validating] AGT-005 @ benchmark/vuln_08_memory_poison.py (tools: save_note + get_notes)
     [Stateful] Added 1 multi-turn exploit(s)
     [Attempt 1] Memory poisoning chain: save_note() → get_notes() — plant marker, verify retriev
-      → ✅ EXTRACTED (conf=1.0) in 0.804s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.721s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
-     pre-validation:  P=0.812 R=1.000 F1=0.897
-     post-validation: P=0.833 R=0.769 F1=0.800
-     buckets: {'CONFIRMED': 21, 'SUSPECTED': 2, 'DISMISSED': 5}
-     wall clock: 42.3s
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 7
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-007 @ benchmark/vuln_09_comment_secret.py:11
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.636s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.99)
+
+  [Validating] AGT-007 @ benchmark/vuln_09_comment_secret.py:12
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.723s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.99)
+
+  [Validating] AGT-007 @ benchmark/vuln_09_comment_secret.py:25
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.702s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.99)
+
+  [Validating] AGT-007 @ benchmark/vuln_09_comment_secret.py:11 (comment)
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.618s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-007 @ benchmark/vuln_09_comment_secret.py:12 (comment)
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.563s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-007 @ benchmark/vuln_09_comment_secret.py:24 (comment)
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.713s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-007 @ benchmark/vuln_09_comment_secret.py:25 (comment)
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.719s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 10
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-007 @ benchmark/vuln_10_devious_comments.py:11 (comment)
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.3) in 0.546s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.85)
+
+  [Validating] AGT-007 @ benchmark/vuln_10_devious_comments.py:12 (comment)
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.3) in 0.558s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.85)
+
+  [Validating] AGT-007 @ benchmark/vuln_10_devious_comments.py:13 (comment)
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.3) in 0.749s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.85)
+
+  [Validating] AGT-001 @ lookup_user (benchmark/vuln_10_devious_comments.py:23)
+    [Attempt 1] Side-effect detection via filesystem/subprocess interception
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.3) in 0.686s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.75)
+
+  [Validating] AGT-001 @ run_script (benchmark/vuln_10_devious_comments.py:33)
+    [Attempt 1] Side-effect detection via filesystem/subprocess interception
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.3) in 0.516s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.75)
+
+  [Validating] AGT-008 @ run_script (benchmark/vuln_10_devious_comments.py:33)
+    [Attempt 1] Inject os.system() via eval/exec argument
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.606s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-004 @ benchmark/vuln_10_devious_comments.py (tools: run_script)
+    [Attempt 1] Confirm tool chain by enumerating exposed callables
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.714s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-006 @ lookup_user (benchmark/vuln_10_devious_comments.py:23)
+    [Attempt 1] UNION-based SQL injection with dynamic column-count discovery
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.35) in 0.863s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.95)
+
+  [Validating] AGT-006 @ run_script (benchmark/vuln_10_devious_comments.py:33)
+    [Attempt 1] Inject os.system() via eval/exec argument
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.563s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-006 @ benchmark/vuln_10_devious_comments.py:28
+    [Attempt 1] UNION-based SQL injection with dynamic column-count discovery
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.35) in 0.781s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.80)
+     pre-validation:  P=0.773 R=1.000 F1=0.872
+     post-validation: P=0.812 R=0.765 F1=0.788
+     buckets: {'CONFIRMED': 31, 'SUSPECTED': 8, 'DISMISSED': 6}
+     wall clock: 52.6s
 
   ── Run 4/5 ──
 
@@ -662,27 +1119,32 @@
 
   [Validating] AGT-008 @ get_user_email (benchmark/vuln_01_overprivileged.py:25)
     [Attempt 1] Shell command injection — confirmed via subprocess interception
-      → ✅ EXTRACTED (conf=1.0) in 0.674s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.609s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
 
   [Validating] AGT-004 @ benchmark/vuln_01_overprivileged.py (tools: get_user_email)
     [Attempt 1] Confirm tool chain by enumerating exposed callables
-      → ✅ EXTRACTED (conf=0.95) in 1.125s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.772s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.95)
 
   [Validating] AGT-006 @ get_user_email (benchmark/vuln_01_overprivileged.py:25)
     [Attempt 1] Path traversal via ../ — confirmed by reading sibling file
-      → 🟡 REACHED (conf=0.35) in 1.042s
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.35) in 0.786s
     [Attempt 2] Shell command injection — confirmed via subprocess interception
-      → ✅ EXTRACTED (conf=1.0) in 0.904s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.556s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
 
   [Validating] AGT-001 @ get_user_email (benchmark/vuln_01_overprivileged.py:25)
     [Attempt 1] Side-effect detection via filesystem/subprocess interception
-      → ✅ EXTRACTED (conf=0.95) in 1.391s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.744s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.95)
 
@@ -693,13 +1155,15 @@
 
   [Validating] AGT-002 @ search_flights (benchmark/vuln_02_prompt_injection.py:21)
     [Attempt 1] Confirm injection-pattern language in tool description
-      → ✅ EXTRACTED (conf=0.95) in 0.623s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.628s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.95)
 
   [Validating] AGT-002 @ book_flight (benchmark/vuln_02_prompt_injection.py:35)
     [Attempt 1] Confirm injection-pattern language in tool description
-      → ✅ EXTRACTED (conf=0.95) in 0.656s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.527s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.95)
 
@@ -710,19 +1174,22 @@
 
   [Validating] AGT-007 @ benchmark/vuln_03_system_leak.py:17
     [Attempt 1] Static secret extraction via file read
-      → ✅ EXTRACTED (conf=0.95) in 0.637s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.699s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.99)
 
   [Validating] AGT-007 @ benchmark/vuln_03_system_leak.py:20
     [Attempt 1] Static secret extraction via file read
-      → ✅ EXTRACTED (conf=0.95) in 0.642s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.731s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.99)
 
   [Validating] AGT-003 @ system_prompt
     [Attempt 1] Confirm system prompt has unprotected sensitive content
-      → 🟡 REACHED (conf=0.3) in 0.676s
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.3) in 0.687s
     [Bucket] 🟡 SUSPECTED  (final conf: 0.60)
 
 ════════════════════════════════════════════════════════════
@@ -730,10 +1197,11 @@
   Findings to validate: 1
 ════════════════════════════════════════════════════════════
 
-  [Validating] AGT-004 @ benchmark/vuln_04_tool_chain.py (tools: send_email, read_database)
+  [Validating] AGT-004 @ benchmark/vuln_04_tool_chain.py (tools: read_database, send_email)
     [Stateful] Added 1 multi-turn exploit(s)
     [Attempt 1] Confirm tool chain by enumerating exposed callables
-      → ✅ EXTRACTED (conf=0.95) in 0.623s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.518s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.95)
 
@@ -744,19 +1212,22 @@
 
   [Validating] AGT-007 @ benchmark/vuln_05_secrets.py:10
     [Attempt 1] Static secret extraction via file read
-      → ✅ EXTRACTED (conf=0.95) in 0.651s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.663s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.99)
 
   [Validating] AGT-007 @ benchmark/vuln_05_secrets.py:12
     [Attempt 1] Static secret extraction via file read
-      → ✅ EXTRACTED (conf=0.95) in 0.701s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.747s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.99)
 
   [Validating] AGT-007 @ benchmark/vuln_05_secrets.py:11
     [Attempt 1] Static secret extraction via file read
-      → ✅ EXTRACTED (conf=0.95) in 0.675s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.588s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.99)
 
@@ -767,49 +1238,57 @@
 
   [Validating] AGT-008 @ calculate (benchmark/vuln_06_code_exec.py:22)
     [Attempt 1] Inject os.system() via eval/exec argument
-      → ✅ EXTRACTED (conf=1.0) in 0.672s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.82s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
 
   [Validating] AGT-008 @ run_python (benchmark/vuln_06_code_exec.py:30)
     [Attempt 1] Inject os.system() via eval/exec argument
-      → ✅ EXTRACTED (conf=1.0) in 0.76s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.749s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
 
   [Validating] AGT-008 @ system_info (benchmark/vuln_06_code_exec.py:38)
     [Attempt 1] Shell command injection — confirmed via subprocess interception
-      → ✅ EXTRACTED (conf=1.0) in 0.669s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.686s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
 
   [Validating] AGT-004 @ benchmark/vuln_06_code_exec.py (tools: calculate)
     [Attempt 1] Confirm tool chain by enumerating exposed callables
-      → ✅ EXTRACTED (conf=0.95) in 0.684s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.708s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.95)
 
   [Validating] AGT-004 @ benchmark/vuln_06_code_exec.py (tools: system_info)
     [Attempt 1] Confirm tool chain by enumerating exposed callables
-      → ✅ EXTRACTED (conf=0.95) in 0.659s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.655s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.95)
 
   [Validating] AGT-006 @ calculate (benchmark/vuln_06_code_exec.py:22)
     [Attempt 1] Inject os.system() via eval/exec argument
-      → ✅ EXTRACTED (conf=1.0) in 0.702s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.786s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
 
   [Validating] AGT-006 @ run_python (benchmark/vuln_06_code_exec.py:30)
     [Attempt 1] Inject os.system() via eval/exec argument
-      → ✅ EXTRACTED (conf=1.0) in 0.631s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.651s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
 
   [Validating] AGT-006 @ system_info (benchmark/vuln_06_code_exec.py:38)
     [Attempt 1] Shell command injection — confirmed via subprocess interception
-      → ✅ EXTRACTED (conf=1.0) in 0.647s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.783s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
 
@@ -819,30 +1298,39 @@
 ════════════════════════════════════════════════════════════
 
   [Validating] AGT-006 @ search_users (benchmark/vuln_07_no_validation.py:24)
-    [Attempt 1] UNION-based SQL injection via f-string interpolation
-      → ⚪ NONE (conf=0.0) in 0.94s
+    [Attempt 1] UNION-based SQL injection with dynamic column-count discovery
+      [Sandbox: Docker (isolated container)]
+      → ⚪ NONE (conf=0.0) in 0.874s
     [Bucket] ❌ DISMISSED  (final conf: 0.00)
 
   [Validating] AGT-006 @ read_document (benchmark/vuln_07_no_validation.py:34)
     [Attempt 1] Path traversal via ../ — confirmed by reading sibling file
-      → ⚪ NONE (conf=0.0) in 0.862s
+      [Sandbox: Docker (isolated container)]
+      → ⚪ NONE (conf=0.0) in 0.94s
     [Bucket] ❌ DISMISSED  (final conf: 0.00)
 
   [Validating] AGT-006 @ fetch_webpage (benchmark/vuln_07_no_validation.py:42)
     [Attempt 1] SSRF — fetch internal URL and confirm unfiltered return
-      → ⚪ NONE (conf=0.0) in 0.83s
+      [Sandbox: Docker (isolated container)]
+      → ⚪ NONE (conf=0.0) in 1.044s
     [Bucket] ❌ DISMISSED  (final conf: 0.00)
 
   [Validating] AGT-009 @ fetch_webpage (benchmark/vuln_07_no_validation.py:42)
     [Attempt 1] SSRF — fetch internal URL and confirm unfiltered return
-      → ⚪ NONE (conf=0.0) in 0.774s
+      [Sandbox: Docker (isolated container)]
+      → ⚪ NONE (conf=0.0) in 0.958s
     [Bucket] ❌ DISMISSED  (final conf: 0.00)
 
   [Validating] AGT-006 @ benchmark/vuln_07_no_validation.py:29
+    [Attempt 1] UNION-based SQL injection with dynamic column-count discovery
+      [Sandbox: Docker (isolated container)]
+      → ⚪ NONE (conf=0.0) in 1.004s
+    [Bucket] ❌ DISMISSED  (final conf: 0.00)
 
   [Validating] AGT-001 @ read_document (benchmark/vuln_07_no_validation.py:34)
     [Attempt 1] Side-effect detection via filesystem/subprocess interception
-      → ⚪ NONE (conf=0.0) in 0.993s
+      [Sandbox: Docker (isolated container)]
+      → ⚪ NONE (conf=0.0) in 0.885s
     [Bucket] ❌ DISMISSED  (final conf: 0.00)
 
 ════════════════════════════════════════════════════════════
@@ -853,13 +1341,136 @@
   [Validating] AGT-005 @ benchmark/vuln_08_memory_poison.py (tools: save_note + get_notes)
     [Stateful] Added 1 multi-turn exploit(s)
     [Attempt 1] Memory poisoning chain: save_note() → get_notes() — plant marker, verify retriev
-      → ✅ EXTRACTED (conf=1.0) in 0.686s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.733s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
-     pre-validation:  P=0.812 R=1.000 F1=0.897
-     post-validation: P=0.833 R=0.769 F1=0.800
-     buckets: {'CONFIRMED': 21, 'SUSPECTED': 2, 'DISMISSED': 5}
-     wall clock: 34.6s
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 7
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-007 @ benchmark/vuln_09_comment_secret.py:11
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.531s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.99)
+
+  [Validating] AGT-007 @ benchmark/vuln_09_comment_secret.py:12
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.677s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.99)
+
+  [Validating] AGT-007 @ benchmark/vuln_09_comment_secret.py:25
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.759s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.99)
+
+  [Validating] AGT-007 @ benchmark/vuln_09_comment_secret.py:11 (comment)
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.592s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-007 @ benchmark/vuln_09_comment_secret.py:12 (comment)
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.503s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-007 @ benchmark/vuln_09_comment_secret.py:24 (comment)
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.731s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-007 @ benchmark/vuln_09_comment_secret.py:25 (comment)
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.684s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 10
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-007 @ benchmark/vuln_10_devious_comments.py:11 (comment)
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.3) in 0.634s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.85)
+
+  [Validating] AGT-007 @ benchmark/vuln_10_devious_comments.py:12 (comment)
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.3) in 0.628s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.85)
+
+  [Validating] AGT-007 @ benchmark/vuln_10_devious_comments.py:13 (comment)
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.3) in 0.707s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.85)
+
+  [Validating] AGT-001 @ lookup_user (benchmark/vuln_10_devious_comments.py:23)
+    [Attempt 1] Side-effect detection via filesystem/subprocess interception
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.3) in 0.778s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.75)
+
+  [Validating] AGT-001 @ run_script (benchmark/vuln_10_devious_comments.py:33)
+    [Attempt 1] Side-effect detection via filesystem/subprocess interception
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.3) in 0.748s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.75)
+
+  [Validating] AGT-008 @ run_script (benchmark/vuln_10_devious_comments.py:33)
+    [Attempt 1] Inject os.system() via eval/exec argument
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.698s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-004 @ benchmark/vuln_10_devious_comments.py (tools: run_script)
+    [Attempt 1] Confirm tool chain by enumerating exposed callables
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.68s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-006 @ lookup_user (benchmark/vuln_10_devious_comments.py:23)
+    [Attempt 1] UNION-based SQL injection with dynamic column-count discovery
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.35) in 0.74s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.95)
+
+  [Validating] AGT-006 @ run_script (benchmark/vuln_10_devious_comments.py:33)
+    [Attempt 1] Inject os.system() via eval/exec argument
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.6s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-006 @ benchmark/vuln_10_devious_comments.py:28
+    [Attempt 1] UNION-based SQL injection with dynamic column-count discovery
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.35) in 0.769s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.80)
+     pre-validation:  P=0.773 R=1.000 F1=0.872
+     post-validation: P=0.812 R=0.765 F1=0.788
+     buckets: {'CONFIRMED': 31, 'SUSPECTED': 8, 'DISMISSED': 6}
+     wall clock: 54.1s
 
   ── Run 5/5 ──
 
@@ -875,27 +1486,32 @@
 
   [Validating] AGT-008 @ get_user_email (benchmark/vuln_01_overprivileged.py:25)
     [Attempt 1] Shell command injection — confirmed via subprocess interception
-      → ✅ EXTRACTED (conf=1.0) in 0.702s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.781s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
 
   [Validating] AGT-004 @ benchmark/vuln_01_overprivileged.py (tools: get_user_email)
     [Attempt 1] Confirm tool chain by enumerating exposed callables
-      → ✅ EXTRACTED (conf=0.95) in 0.712s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.977s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.95)
 
   [Validating] AGT-006 @ get_user_email (benchmark/vuln_01_overprivileged.py:25)
     [Attempt 1] Path traversal via ../ — confirmed by reading sibling file
-      → 🟡 REACHED (conf=0.35) in 0.686s
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.35) in 0.59s
     [Attempt 2] Shell command injection — confirmed via subprocess interception
-      → ✅ EXTRACTED (conf=1.0) in 0.696s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.76s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
 
   [Validating] AGT-001 @ get_user_email (benchmark/vuln_01_overprivileged.py:25)
     [Attempt 1] Side-effect detection via filesystem/subprocess interception
-      → ✅ EXTRACTED (conf=0.95) in 0.667s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.608s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.95)
 
@@ -906,13 +1522,15 @@
 
   [Validating] AGT-002 @ search_flights (benchmark/vuln_02_prompt_injection.py:21)
     [Attempt 1] Confirm injection-pattern language in tool description
-      → ✅ EXTRACTED (conf=0.95) in 0.653s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.58s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.95)
 
   [Validating] AGT-002 @ book_flight (benchmark/vuln_02_prompt_injection.py:35)
     [Attempt 1] Confirm injection-pattern language in tool description
-      → ✅ EXTRACTED (conf=0.95) in 0.681s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.633s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.95)
 
@@ -923,19 +1541,22 @@
 
   [Validating] AGT-007 @ benchmark/vuln_03_system_leak.py:17
     [Attempt 1] Static secret extraction via file read
-      → ✅ EXTRACTED (conf=0.95) in 0.632s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.712s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.99)
 
   [Validating] AGT-007 @ benchmark/vuln_03_system_leak.py:20
     [Attempt 1] Static secret extraction via file read
-      → ✅ EXTRACTED (conf=0.95) in 0.685s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.615s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.99)
 
   [Validating] AGT-003 @ system_prompt
     [Attempt 1] Confirm system prompt has unprotected sensitive content
-      → 🟡 REACHED (conf=0.3) in 0.615s
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.3) in 0.573s
     [Bucket] 🟡 SUSPECTED  (final conf: 0.60)
 
 ════════════════════════════════════════════════════════════
@@ -943,10 +1564,11 @@
   Findings to validate: 1
 ════════════════════════════════════════════════════════════
 
-  [Validating] AGT-004 @ benchmark/vuln_04_tool_chain.py (tools: send_email, read_database)
+  [Validating] AGT-004 @ benchmark/vuln_04_tool_chain.py (tools: read_database, send_email)
     [Stateful] Added 1 multi-turn exploit(s)
     [Attempt 1] Confirm tool chain by enumerating exposed callables
-      → ✅ EXTRACTED (conf=0.95) in 0.648s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.675s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.95)
 
@@ -957,19 +1579,22 @@
 
   [Validating] AGT-007 @ benchmark/vuln_05_secrets.py:10
     [Attempt 1] Static secret extraction via file read
-      → ✅ EXTRACTED (conf=0.95) in 0.659s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.718s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.99)
 
   [Validating] AGT-007 @ benchmark/vuln_05_secrets.py:12
     [Attempt 1] Static secret extraction via file read
-      → ✅ EXTRACTED (conf=0.95) in 0.722s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.625s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.99)
 
   [Validating] AGT-007 @ benchmark/vuln_05_secrets.py:11
     [Attempt 1] Static secret extraction via file read
-      → ✅ EXTRACTED (conf=0.95) in 1.044s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.527s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.99)
 
@@ -980,49 +1605,57 @@
 
   [Validating] AGT-008 @ calculate (benchmark/vuln_06_code_exec.py:22)
     [Attempt 1] Inject os.system() via eval/exec argument
-      → ✅ EXTRACTED (conf=1.0) in 0.662s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.635s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
 
   [Validating] AGT-008 @ run_python (benchmark/vuln_06_code_exec.py:30)
     [Attempt 1] Inject os.system() via eval/exec argument
-      → ✅ EXTRACTED (conf=1.0) in 0.626s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.789s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
 
   [Validating] AGT-008 @ system_info (benchmark/vuln_06_code_exec.py:38)
     [Attempt 1] Shell command injection — confirmed via subprocess interception
-      → ✅ EXTRACTED (conf=1.0) in 0.758s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.603s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
 
   [Validating] AGT-004 @ benchmark/vuln_06_code_exec.py (tools: calculate)
     [Attempt 1] Confirm tool chain by enumerating exposed callables
-      → ✅ EXTRACTED (conf=0.95) in 0.702s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.802s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.95)
 
   [Validating] AGT-004 @ benchmark/vuln_06_code_exec.py (tools: system_info)
     [Attempt 1] Confirm tool chain by enumerating exposed callables
-      → ✅ EXTRACTED (conf=0.95) in 0.951s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.78s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 0.95)
 
   [Validating] AGT-006 @ calculate (benchmark/vuln_06_code_exec.py:22)
     [Attempt 1] Inject os.system() via eval/exec argument
-      → ✅ EXTRACTED (conf=1.0) in 1.026s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.716s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
 
   [Validating] AGT-006 @ run_python (benchmark/vuln_06_code_exec.py:30)
     [Attempt 1] Inject os.system() via eval/exec argument
-      → ✅ EXTRACTED (conf=1.0) in 0.722s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.651s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
 
   [Validating] AGT-006 @ system_info (benchmark/vuln_06_code_exec.py:38)
     [Attempt 1] Shell command injection — confirmed via subprocess interception
-      → ✅ EXTRACTED (conf=1.0) in 0.725s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.683s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
 
@@ -1032,30 +1665,39 @@
 ════════════════════════════════════════════════════════════
 
   [Validating] AGT-006 @ search_users (benchmark/vuln_07_no_validation.py:24)
-    [Attempt 1] UNION-based SQL injection via f-string interpolation
-      → ⚪ NONE (conf=0.0) in 0.737s
+    [Attempt 1] UNION-based SQL injection with dynamic column-count discovery
+      [Sandbox: Docker (isolated container)]
+      → ⚪ NONE (conf=0.0) in 0.798s
     [Bucket] ❌ DISMISSED  (final conf: 0.00)
 
   [Validating] AGT-006 @ read_document (benchmark/vuln_07_no_validation.py:34)
     [Attempt 1] Path traversal via ../ — confirmed by reading sibling file
-      → ⚪ NONE (conf=0.0) in 0.818s
+      [Sandbox: Docker (isolated container)]
+      → ⚪ NONE (conf=0.0) in 0.812s
     [Bucket] ❌ DISMISSED  (final conf: 0.00)
 
   [Validating] AGT-006 @ fetch_webpage (benchmark/vuln_07_no_validation.py:42)
     [Attempt 1] SSRF — fetch internal URL and confirm unfiltered return
-      → ⚪ NONE (conf=0.0) in 0.832s
+      [Sandbox: Docker (isolated container)]
+      → ⚪ NONE (conf=0.0) in 0.966s
     [Bucket] ❌ DISMISSED  (final conf: 0.00)
 
   [Validating] AGT-009 @ fetch_webpage (benchmark/vuln_07_no_validation.py:42)
     [Attempt 1] SSRF — fetch internal URL and confirm unfiltered return
-      → ⚪ NONE (conf=0.0) in 0.846s
+      [Sandbox: Docker (isolated container)]
+      → ⚪ NONE (conf=0.0) in 0.936s
     [Bucket] ❌ DISMISSED  (final conf: 0.00)
 
   [Validating] AGT-006 @ benchmark/vuln_07_no_validation.py:29
+    [Attempt 1] UNION-based SQL injection with dynamic column-count discovery
+      [Sandbox: Docker (isolated container)]
+      → ⚪ NONE (conf=0.0) in 0.952s
+    [Bucket] ❌ DISMISSED  (final conf: 0.00)
 
   [Validating] AGT-001 @ read_document (benchmark/vuln_07_no_validation.py:34)
     [Attempt 1] Side-effect detection via filesystem/subprocess interception
-      → ⚪ NONE (conf=0.0) in 0.869s
+      [Sandbox: Docker (isolated container)]
+      → ⚪ NONE (conf=0.0) in 0.946s
     [Bucket] ❌ DISMISSED  (final conf: 0.00)
 
 ════════════════════════════════════════════════════════════
@@ -1066,22 +1708,145 @@
   [Validating] AGT-005 @ benchmark/vuln_08_memory_poison.py (tools: save_note + get_notes)
     [Stateful] Added 1 multi-turn exploit(s)
     [Attempt 1] Memory poisoning chain: save_note() → get_notes() — plant marker, verify retriev
-      → ✅ EXTRACTED (conf=1.0) in 0.695s
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.793s
       [Early exit] High-confidence proof obtained.
     [Bucket] ✅ CONFIRMED  (final conf: 1.00)
-     pre-validation:  P=0.812 R=1.000 F1=0.897
-     post-validation: P=0.833 R=0.769 F1=0.800
-     buckets: {'CONFIRMED': 21, 'SUSPECTED': 2, 'DISMISSED': 5}
-     wall clock: 34.2s
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 7
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-007 @ benchmark/vuln_09_comment_secret.py:11
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.624s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.99)
+
+  [Validating] AGT-007 @ benchmark/vuln_09_comment_secret.py:12
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.563s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.99)
+
+  [Validating] AGT-007 @ benchmark/vuln_09_comment_secret.py:25
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.733s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.99)
+
+  [Validating] AGT-007 @ benchmark/vuln_09_comment_secret.py:11 (comment)
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.625s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-007 @ benchmark/vuln_09_comment_secret.py:12 (comment)
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.523s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-007 @ benchmark/vuln_09_comment_secret.py:24 (comment)
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.707s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-007 @ benchmark/vuln_09_comment_secret.py:25 (comment)
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.779s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 10
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-007 @ benchmark/vuln_10_devious_comments.py:11 (comment)
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.3) in 0.777s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.85)
+
+  [Validating] AGT-007 @ benchmark/vuln_10_devious_comments.py:12 (comment)
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.3) in 0.776s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.85)
+
+  [Validating] AGT-007 @ benchmark/vuln_10_devious_comments.py:13 (comment)
+    [Attempt 1] Static secret extraction via file read
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.3) in 0.825s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.85)
+
+  [Validating] AGT-001 @ lookup_user (benchmark/vuln_10_devious_comments.py:23)
+    [Attempt 1] Side-effect detection via filesystem/subprocess interception
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.3) in 0.903s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.75)
+
+  [Validating] AGT-001 @ run_script (benchmark/vuln_10_devious_comments.py:33)
+    [Attempt 1] Side-effect detection via filesystem/subprocess interception
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.3) in 0.795s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.75)
+
+  [Validating] AGT-008 @ run_script (benchmark/vuln_10_devious_comments.py:33)
+    [Attempt 1] Inject os.system() via eval/exec argument
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.751s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-004 @ benchmark/vuln_10_devious_comments.py (tools: run_script)
+    [Attempt 1] Confirm tool chain by enumerating exposed callables
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=0.95) in 0.553s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-006 @ lookup_user (benchmark/vuln_10_devious_comments.py:23)
+    [Attempt 1] UNION-based SQL injection with dynamic column-count discovery
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.35) in 0.798s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.95)
+
+  [Validating] AGT-006 @ run_script (benchmark/vuln_10_devious_comments.py:33)
+    [Attempt 1] Inject os.system() via eval/exec argument
+      [Sandbox: Docker (isolated container)]
+      → ✅ EXTRACTED (conf=1.0) in 0.607s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-006 @ benchmark/vuln_10_devious_comments.py:28
+    [Attempt 1] UNION-based SQL injection with dynamic column-count discovery
+      [Sandbox: Docker (isolated container)]
+      → 🟡 REACHED (conf=0.35) in 0.739s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.80)
+     pre-validation:  P=0.773 R=1.000 F1=0.872
+     post-validation: P=0.812 R=0.765 F1=0.788
+     buckets: {'CONFIRMED': 31, 'SUSPECTED': 8, 'DISMISSED': 6}
+     wall clock: 54.0s
 
 ======================================================================
   AGGREGATE RESULTS  (5 runs)
 ======================================================================
 
   [1-3] Precision / Recall / F1 (pre-validation)
-    Precision                  mean=0.8125  median=0.8125  min=0.8125  max=0.8125  stdev=0.0
+    Precision                  mean=0.7727  median=0.7727  min=0.7727  max=0.7727  stdev=0.0
     Recall                     mean=1.0000  median=1.0000  min=1.0000  max=1.0000  stdev=0.0
-    F1                         mean=0.8966  median=0.8966  min=0.8966  max=0.8966  stdev=0.0
+    F1                         mean=0.8718  median=0.8718  min=0.8718  max=0.8718  stdev=0.0
 
   Targets (>= 0.85):
     FAIL  precision >= 0.85
@@ -1096,10 +1861,10 @@
     meets target (<=1): PASS
 
   [6] Scan time per agent (seconds, median-of-medians)
-    Static only                mean=0.0021  median=0.0017  min=0.0016  max=0.0038  stdev=0.0009
-    Hybrid (+LLM)              mean=0.0021  median=0.0017  min=0.0016  max=0.0038  stdev=0.0009
-    Validation                 mean=2.2505  median=2.0841  min=2.0207  max=2.8719  stdev=0.3176
-    Total                      mean=2.2519  median=2.0851  min=2.0232  max=2.8729  stdev=0.3174
+    Static only                mean=0.0096  median=0.0096  min=0.0055  max=0.0123  stdev=0.0026
+    Hybrid (+LLM)              mean=0.0096  median=0.0096  min=0.0055  max=0.0123  stdev=0.0026
+    Validation                 mean=2.4317  median=2.2995  min=2.2077  max=2.9879  stdev=0.2837
+    Total                      mean=2.4385  median=2.3050  min=2.2112  max=2.9987  stdev=0.2855
 
   [7] Estimated API cost
     Cost USD (whole run)       mean=0.0000  median=0.0000  min=0.0000  max=0.0000  stdev=0.0
@@ -1108,14 +1873,14 @@
     Output tokens              mean=0.0000  median=0.0000  min=0.0000  max=0.0000  stdev=0.0
 
   [8] Validation buckets (run 1)
-    {'CONFIRMED': 21, 'SUSPECTED': 2, 'DISMISSED': 5}
+    {'CONFIRMED': 31, 'SUSPECTED': 8, 'DISMISSED': 6}
 
   [8b] Precision before vs after validation — THE KEY TEST
-    before: 0.8125
-    after:  0.8333
-    change: +0.0208
+    before: 0.7727
+    after:  0.8125
+    change: +0.0398
 
 
-  Full JSON:     reports/full_evaluation_5runs_20260729_153427.json
-  Markdown tables: reports/full_evaluation_5runs_20260729_153427.md
+  Full JSON:     reports/full_evaluation_5runs_20260812_023635.json
+  Markdown tables: reports/full_evaluation_5runs_20260812_023635.md
 

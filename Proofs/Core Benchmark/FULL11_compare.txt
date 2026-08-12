@@ -1,0 +1,36 @@
+
+======================================================================
+  TOOL COMPARISON — AgentGuard vs Bandit vs Semgrep
+======================================================================
+
+  Running AgentGuard (static)...
+  Running Bandit...
+  Running Semgrep (this can take a minute)...
+
+======================================================================
+  RESULTS
+======================================================================
+
+  Tool             Prec  Recall     F1  Time(s)  AGT covered
+  ----------------------------------------------------------
+  AgentGuard      0.773   1.000  0.872     0.04         9/10
+  Bandit          1.000   0.353  0.522     0.83         3/10
+  Semgrep         0.833   0.294  0.435    18.93         2/10
+
+  Agent Top 10 coverage (can the tool detect the class at all?):
+  Class       AgentGuard   Bandit  Semgrep
+  ----------------------------------------
+  AGT-001            yes        —        —
+  AGT-002            yes        —        —
+  AGT-003            yes        —        —
+  AGT-004            yes        —        —
+  AGT-005            yes        —        —
+  AGT-006            yes      yes      yes
+  AGT-007            yes      yes        —
+  AGT-008            yes      yes      yes
+  AGT-009            yes        —        —
+  AGT-010              —        —        —
+
+  JSON:     reports/tool_comparison.json
+  Markdown: reports/tool_comparison.md
+
