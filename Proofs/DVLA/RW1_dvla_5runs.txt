@@ -1,0 +1,20 @@
+
+==================================================================
+  REPEATED SCAN — 5 runs of a folder
+  Target: /home/student/realworld/damn-vulnerable-llm-agent
+  LLM: OFF (static, deterministic)
+==================================================================
+  Run 1/5: 5 finding(s) in 0.02s
+  Run 2/5: 5 finding(s) in 0.01s
+  Run 3/5: 5 finding(s) in 0.01s
+  Run 4/5: 5 finding(s) in 0.01s
+  Run 5/5: 5 finding(s) in 0.01s
+
+------------------------------------------------------------------
+  Unique outcomes across 5 runs: 1
+  Result: DETERMINISTIC — identical findings every run.
+  Finding counts per run: [5, 5, 5, 5, 5]
+  Median scan time: 0.01s
+
+  Report: reports/repeat_scan_damn-vulnerable-llm-agent.json
+

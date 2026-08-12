@@ -1,0 +1,35 @@
+
+[1/4] Resolving folder: /home/student/realworld/claude-quickstarts/agents
+      Discovered 15 Python file(s), 10 containing agent code
+
+[2/4] Analysing 15 file(s) (static only)...
+      27 tool(s) across the project
+
+[3/4] Cross-file capability chain analysis...
+      0 cross-file chain(s), 1 project-wide attack path(s)
+
+[4/4] Writing reports...
+      JSON:     reports/agents_project_report.json
+      Markdown: reports/agents_project_report.md
+
+==================================================================
+  AGENTGUARD PROJECT SCAN
+==================================================================
+  Target:       /home/student/realworld/claude-quickstarts/agents
+  Type:         folder
+  Files parsed: 15
+  Agent files:  10
+  Tools found:  27
+  Frameworks:   anthropic, custom
+  Findings:     3
+
+    [CRITICAL]   1
+    [HIGH]       2
+
+------------------------------------------------------------------
+  FINDINGS BY FILE
+------------------------------------------------------------------
+    agent.py                                       1  (worst: CRITICAL)
+    test_message_params.py                         1  (worst: HIGH)
+    utils/history_util.py                          1  (worst: HIGH)
+

@@ -1,0 +1,102 @@
+
+[1/5] Parsing benchmark/vuln_06_code_exec.py...
+      Found 3 tool(s), framework: anthropic
+
+[2/5] Building capability graph...
+      Identified 2 potential attack path(s)
+
+[3/5] Running static + LLM analysis...
+      Identified 8 candidate finding(s)
+
+[4/5] Self-validation loop (Phase 3 + Phase 4)...
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 8
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-008 @ calculate (benchmark/vuln_06_code_exec.py:22)
+    [Attempt 1] Inject os.system() via eval/exec argument
+      → ✅ EXTRACTED (conf=1.0) in 0.838s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-008 @ run_python (benchmark/vuln_06_code_exec.py:30)
+    [Attempt 1] Inject os.system() via eval/exec argument
+      → ✅ EXTRACTED (conf=1.0) in 0.68s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-008 @ system_info (benchmark/vuln_06_code_exec.py:38)
+    [Attempt 1] Shell command injection — confirmed via subprocess interception
+      → ✅ EXTRACTED (conf=1.0) in 0.694s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-004 @ benchmark/vuln_06_code_exec.py (tools: calculate)
+    [Attempt 1] Confirm tool chain by enumerating exposed callables
+      → ✅ EXTRACTED (conf=0.95) in 0.701s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-004 @ benchmark/vuln_06_code_exec.py (tools: system_info)
+    [Attempt 1] Confirm tool chain by enumerating exposed callables
+      → ✅ EXTRACTED (conf=0.95) in 0.687s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-006 @ calculate (benchmark/vuln_06_code_exec.py:22)
+    [Attempt 1] Inject os.system() via eval/exec argument
+      → ✅ EXTRACTED (conf=1.0) in 0.666s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-006 @ run_python (benchmark/vuln_06_code_exec.py:30)
+    [Attempt 1] Inject os.system() via eval/exec argument
+      → ✅ EXTRACTED (conf=1.0) in 0.665s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-006 @ system_info (benchmark/vuln_06_code_exec.py:38)
+    [Attempt 1] Shell command injection — confirmed via subprocess interception
+      → ✅ EXTRACTED (conf=1.0) in 0.666s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+[5/5] Writing reports...
+      Markdown: reports/vuln_06_code_exec_validated_report.md
+      JSON:     reports/vuln_06_code_exec_validated_report.json
+
+════════════════════════════════════════════════════════════
+  VALIDATION SUMMARY
+════════════════════════════════════════════════════════════
+  ✅  CONFIRMED:  8
+  🟡  SUSPECTED:  0
+  ❌  DISMISSED:  0
+
+  CONFIRMED VULNERABILITIES (exploit succeeded):
+    ✅ [AGT-008] Unsafe Code Execution Capability
+       └─ calculate (benchmark/vuln_06_code_exec.py:22)
+       └─ confidence: 100%
+    ✅ [AGT-008] Unsafe Code Execution Capability
+       └─ run_python (benchmark/vuln_06_code_exec.py:30)
+       └─ confidence: 100%
+    ✅ [AGT-008] Unsafe Code Execution Capability
+       └─ system_info (benchmark/vuln_06_code_exec.py:38)
+       └─ confidence: 100%
+    ✅ [AGT-004] Unsafe Tool Chaining
+       └─ benchmark/vuln_06_code_exec.py (tools: calculate)
+       └─ confidence: 95%
+    ✅ [AGT-004] Unsafe Tool Chaining
+       └─ benchmark/vuln_06_code_exec.py (tools: system_info)
+       └─ confidence: 95%
+    ✅ [AGT-006] Missing Tool Input Validation
+       └─ calculate (benchmark/vuln_06_code_exec.py:22)
+       └─ confidence: 100%
+    ✅ [AGT-006] Missing Tool Input Validation
+       └─ run_python (benchmark/vuln_06_code_exec.py:30)
+       └─ confidence: 100%
+    ✅ [AGT-006] Missing Tool Input Validation
+       └─ system_info (benchmark/vuln_06_code_exec.py:38)
+       └─ confidence: 100%
+

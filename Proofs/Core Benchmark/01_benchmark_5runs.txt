@@ -1,0 +1,1121 @@
+
+======================================================================
+  AGENTGUARD FULL EVALUATION — 5 run(s)
+  LLM: OFF (static only)  |  Validation: ON
+======================================================================
+
+  ── Run 1/5 ──
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 0
+════════════════════════════════════════════════════════════
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 4
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-008 @ get_user_email (benchmark/vuln_01_overprivileged.py:25)
+    [Attempt 1] Shell command injection — confirmed via subprocess interception
+[Docker] Building sandbox image agentguard-sandbox:latest (one-time setup)...
+[Docker] Build failed: DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/bui
+[Docker] Building sandbox image agentguard-sandbox:latest (one-time setup)...
+      → ✅ EXTRACTED (conf=1.0) in 0.085s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-004 @ benchmark/vuln_01_overprivileged.py (tools: get_user_email)
+    [Attempt 1] Confirm tool chain by enumerating exposed callables
+      → ✅ EXTRACTED (conf=0.95) in 0.873s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-006 @ get_user_email (benchmark/vuln_01_overprivileged.py:25)
+    [Attempt 1] Path traversal via ../ — confirmed by reading sibling file
+      → 🟡 REACHED (conf=0.35) in 0.776s
+    [Attempt 2] Shell command injection — confirmed via subprocess interception
+      → ✅ EXTRACTED (conf=1.0) in 0.892s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-001 @ get_user_email (benchmark/vuln_01_overprivileged.py:25)
+    [Attempt 1] Side-effect detection via filesystem/subprocess interception
+      → ✅ EXTRACTED (conf=0.95) in 0.635s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 2
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-002 @ search_flights (benchmark/vuln_02_prompt_injection.py:21)
+    [Attempt 1] Confirm injection-pattern language in tool description
+      → ✅ EXTRACTED (conf=0.95) in 1.066s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-002 @ book_flight (benchmark/vuln_02_prompt_injection.py:35)
+    [Attempt 1] Confirm injection-pattern language in tool description
+      → ✅ EXTRACTED (conf=0.95) in 0.622s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 3
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-007 @ benchmark/vuln_03_system_leak.py:17
+    [Attempt 1] Static secret extraction via file read
+      → ✅ EXTRACTED (conf=0.95) in 0.632s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.99)
+
+  [Validating] AGT-007 @ benchmark/vuln_03_system_leak.py:20
+    [Attempt 1] Static secret extraction via file read
+      → ✅ EXTRACTED (conf=0.95) in 0.659s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.99)
+
+  [Validating] AGT-003 @ system_prompt
+    [Attempt 1] Confirm system prompt has unprotected sensitive content
+      → 🟡 REACHED (conf=0.3) in 0.63s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.60)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 1
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-004 @ benchmark/vuln_04_tool_chain.py (tools: send_email, read_database)
+    [Stateful] Added 1 multi-turn exploit(s)
+    [Attempt 1] Confirm tool chain by enumerating exposed callables
+      → ✅ EXTRACTED (conf=0.95) in 0.651s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 3
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-007 @ benchmark/vuln_05_secrets.py:10
+    [Attempt 1] Static secret extraction via file read
+      → ✅ EXTRACTED (conf=0.95) in 0.648s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.99)
+
+  [Validating] AGT-007 @ benchmark/vuln_05_secrets.py:12
+    [Attempt 1] Static secret extraction via file read
+      → ✅ EXTRACTED (conf=0.95) in 0.589s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.99)
+
+  [Validating] AGT-007 @ benchmark/vuln_05_secrets.py:11
+    [Attempt 1] Static secret extraction via file read
+      → ✅ EXTRACTED (conf=0.95) in 0.631s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.99)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 8
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-008 @ calculate (benchmark/vuln_06_code_exec.py:22)
+    [Attempt 1] Inject os.system() via eval/exec argument
+      → ✅ EXTRACTED (conf=1.0) in 0.684s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-008 @ run_python (benchmark/vuln_06_code_exec.py:30)
+    [Attempt 1] Inject os.system() via eval/exec argument
+      → ✅ EXTRACTED (conf=1.0) in 0.642s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-008 @ system_info (benchmark/vuln_06_code_exec.py:38)
+    [Attempt 1] Shell command injection — confirmed via subprocess interception
+      → ✅ EXTRACTED (conf=1.0) in 0.635s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-004 @ benchmark/vuln_06_code_exec.py (tools: calculate)
+    [Attempt 1] Confirm tool chain by enumerating exposed callables
+      → ✅ EXTRACTED (conf=0.95) in 0.704s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-004 @ benchmark/vuln_06_code_exec.py (tools: system_info)
+    [Attempt 1] Confirm tool chain by enumerating exposed callables
+      → ✅ EXTRACTED (conf=0.95) in 0.688s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-006 @ calculate (benchmark/vuln_06_code_exec.py:22)
+    [Attempt 1] Inject os.system() via eval/exec argument
+      → ✅ EXTRACTED (conf=1.0) in 0.618s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-006 @ run_python (benchmark/vuln_06_code_exec.py:30)
+    [Attempt 1] Inject os.system() via eval/exec argument
+      → ✅ EXTRACTED (conf=1.0) in 0.764s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-006 @ system_info (benchmark/vuln_06_code_exec.py:38)
+    [Attempt 1] Shell command injection — confirmed via subprocess interception
+      → ✅ EXTRACTED (conf=1.0) in 0.656s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 6
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-006 @ search_users (benchmark/vuln_07_no_validation.py:24)
+    [Attempt 1] UNION-based SQL injection via f-string interpolation
+      → ⚪ NONE (conf=0.0) in 0.802s
+    [Bucket] ❌ DISMISSED  (final conf: 0.00)
+
+  [Validating] AGT-006 @ read_document (benchmark/vuln_07_no_validation.py:34)
+    [Attempt 1] Path traversal via ../ — confirmed by reading sibling file
+      → ⚪ NONE (conf=0.0) in 0.984s
+    [Bucket] ❌ DISMISSED  (final conf: 0.00)
+
+  [Validating] AGT-006 @ fetch_webpage (benchmark/vuln_07_no_validation.py:42)
+    [Attempt 1] SSRF — fetch internal URL and confirm unfiltered return
+      → ⚪ NONE (conf=0.0) in 0.935s
+    [Bucket] ❌ DISMISSED  (final conf: 0.00)
+
+  [Validating] AGT-009 @ fetch_webpage (benchmark/vuln_07_no_validation.py:42)
+    [Attempt 1] SSRF — fetch internal URL and confirm unfiltered return
+      → ⚪ NONE (conf=0.0) in 0.809s
+    [Bucket] ❌ DISMISSED  (final conf: 0.00)
+
+  [Validating] AGT-006 @ benchmark/vuln_07_no_validation.py:29
+
+  [Validating] AGT-001 @ read_document (benchmark/vuln_07_no_validation.py:34)
+    [Attempt 1] Side-effect detection via filesystem/subprocess interception
+      → ⚪ NONE (conf=0.0) in 0.827s
+    [Bucket] ❌ DISMISSED  (final conf: 0.00)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 1
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-005 @ benchmark/vuln_08_memory_poison.py (tools: save_note + get_notes)
+    [Stateful] Added 1 multi-turn exploit(s)
+    [Attempt 1] Memory poisoning chain: save_note() → get_notes() — plant marker, verify retriev
+      → ✅ EXTRACTED (conf=1.0) in 0.639s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+     pre-validation:  P=0.812 R=1.000 F1=0.897
+     post-validation: P=0.833 R=0.769 F1=0.800
+     buckets: {'CONFIRMED': 21, 'SUSPECTED': 2, 'DISMISSED': 5}
+     wall clock: 62.8s
+
+  ── Run 2/5 ──
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 0
+════════════════════════════════════════════════════════════
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 4
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-008 @ get_user_email (benchmark/vuln_01_overprivileged.py:25)
+    [Attempt 1] Shell command injection — confirmed via subprocess interception
+      → ✅ EXTRACTED (conf=1.0) in 0.656s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-004 @ benchmark/vuln_01_overprivileged.py (tools: get_user_email)
+    [Attempt 1] Confirm tool chain by enumerating exposed callables
+      → ✅ EXTRACTED (conf=0.95) in 1.287s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-006 @ get_user_email (benchmark/vuln_01_overprivileged.py:25)
+    [Attempt 1] Path traversal via ../ — confirmed by reading sibling file
+      → 🟡 REACHED (conf=0.35) in 1.559s
+    [Attempt 2] Shell command injection — confirmed via subprocess interception
+      → ✅ EXTRACTED (conf=1.0) in 0.746s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-001 @ get_user_email (benchmark/vuln_01_overprivileged.py:25)
+    [Attempt 1] Side-effect detection via filesystem/subprocess interception
+      → ✅ EXTRACTED (conf=0.95) in 0.651s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 2
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-002 @ search_flights (benchmark/vuln_02_prompt_injection.py:21)
+    [Attempt 1] Confirm injection-pattern language in tool description
+      → ✅ EXTRACTED (conf=0.95) in 0.63s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-002 @ book_flight (benchmark/vuln_02_prompt_injection.py:35)
+    [Attempt 1] Confirm injection-pattern language in tool description
+      → ✅ EXTRACTED (conf=0.95) in 0.627s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 3
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-007 @ benchmark/vuln_03_system_leak.py:17
+    [Attempt 1] Static secret extraction via file read
+      → ✅ EXTRACTED (conf=0.95) in 0.755s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.99)
+
+  [Validating] AGT-007 @ benchmark/vuln_03_system_leak.py:20
+    [Attempt 1] Static secret extraction via file read
+      → ✅ EXTRACTED (conf=0.95) in 0.674s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.99)
+
+  [Validating] AGT-003 @ system_prompt
+    [Attempt 1] Confirm system prompt has unprotected sensitive content
+      → 🟡 REACHED (conf=0.3) in 0.628s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.60)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 1
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-004 @ benchmark/vuln_04_tool_chain.py (tools: send_email, read_database)
+    [Stateful] Added 1 multi-turn exploit(s)
+    [Attempt 1] Confirm tool chain by enumerating exposed callables
+      → ✅ EXTRACTED (conf=0.95) in 0.657s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 3
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-007 @ benchmark/vuln_05_secrets.py:10
+    [Attempt 1] Static secret extraction via file read
+      → ✅ EXTRACTED (conf=0.95) in 0.707s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.99)
+
+  [Validating] AGT-007 @ benchmark/vuln_05_secrets.py:12
+    [Attempt 1] Static secret extraction via file read
+      → ✅ EXTRACTED (conf=0.95) in 0.827s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.99)
+
+  [Validating] AGT-007 @ benchmark/vuln_05_secrets.py:11
+    [Attempt 1] Static secret extraction via file read
+      → ✅ EXTRACTED (conf=0.95) in 0.888s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.99)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 8
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-008 @ calculate (benchmark/vuln_06_code_exec.py:22)
+    [Attempt 1] Inject os.system() via eval/exec argument
+      → ✅ EXTRACTED (conf=1.0) in 0.881s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-008 @ run_python (benchmark/vuln_06_code_exec.py:30)
+    [Attempt 1] Inject os.system() via eval/exec argument
+      → ✅ EXTRACTED (conf=1.0) in 0.622s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-008 @ system_info (benchmark/vuln_06_code_exec.py:38)
+    [Attempt 1] Shell command injection — confirmed via subprocess interception
+      → ✅ EXTRACTED (conf=1.0) in 0.661s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-004 @ benchmark/vuln_06_code_exec.py (tools: calculate)
+    [Attempt 1] Confirm tool chain by enumerating exposed callables
+      → ✅ EXTRACTED (conf=0.95) in 0.945s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-004 @ benchmark/vuln_06_code_exec.py (tools: system_info)
+    [Attempt 1] Confirm tool chain by enumerating exposed callables
+      → ✅ EXTRACTED (conf=0.95) in 0.941s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-006 @ calculate (benchmark/vuln_06_code_exec.py:22)
+    [Attempt 1] Inject os.system() via eval/exec argument
+      → ✅ EXTRACTED (conf=1.0) in 0.698s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-006 @ run_python (benchmark/vuln_06_code_exec.py:30)
+    [Attempt 1] Inject os.system() via eval/exec argument
+      → ✅ EXTRACTED (conf=1.0) in 0.869s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-006 @ system_info (benchmark/vuln_06_code_exec.py:38)
+    [Attempt 1] Shell command injection — confirmed via subprocess interception
+      → ✅ EXTRACTED (conf=1.0) in 0.868s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 6
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-006 @ search_users (benchmark/vuln_07_no_validation.py:24)
+    [Attempt 1] UNION-based SQL injection via f-string interpolation
+      → ⚪ NONE (conf=0.0) in 0.717s
+    [Bucket] ❌ DISMISSED  (final conf: 0.00)
+
+  [Validating] AGT-006 @ read_document (benchmark/vuln_07_no_validation.py:34)
+    [Attempt 1] Path traversal via ../ — confirmed by reading sibling file
+      → ⚪ NONE (conf=0.0) in 0.845s
+    [Bucket] ❌ DISMISSED  (final conf: 0.00)
+
+  [Validating] AGT-006 @ fetch_webpage (benchmark/vuln_07_no_validation.py:42)
+    [Attempt 1] SSRF — fetch internal URL and confirm unfiltered return
+      → ⚪ NONE (conf=0.0) in 1.79s
+    [Bucket] ❌ DISMISSED  (final conf: 0.00)
+
+  [Validating] AGT-009 @ fetch_webpage (benchmark/vuln_07_no_validation.py:42)
+    [Attempt 1] SSRF — fetch internal URL and confirm unfiltered return
+      → ⚪ NONE (conf=0.0) in 1.623s
+    [Bucket] ❌ DISMISSED  (final conf: 0.00)
+
+  [Validating] AGT-006 @ benchmark/vuln_07_no_validation.py:29
+
+  [Validating] AGT-001 @ read_document (benchmark/vuln_07_no_validation.py:34)
+    [Attempt 1] Side-effect detection via filesystem/subprocess interception
+      → ⚪ NONE (conf=0.0) in 1.111s
+    [Bucket] ❌ DISMISSED  (final conf: 0.00)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 1
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-005 @ benchmark/vuln_08_memory_poison.py (tools: save_note + get_notes)
+    [Stateful] Added 1 multi-turn exploit(s)
+    [Attempt 1] Memory poisoning chain: save_note() → get_notes() — plant marker, verify retriev
+      → ✅ EXTRACTED (conf=1.0) in 0.896s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+     pre-validation:  P=0.812 R=1.000 F1=0.897
+     post-validation: P=0.833 R=0.769 F1=0.800
+     buckets: {'CONFIRMED': 21, 'SUSPECTED': 2, 'DISMISSED': 5}
+     wall clock: 41.4s
+
+  ── Run 3/5 ──
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 0
+════════════════════════════════════════════════════════════
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 4
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-008 @ get_user_email (benchmark/vuln_01_overprivileged.py:25)
+    [Attempt 1] Shell command injection — confirmed via subprocess interception
+      → ✅ EXTRACTED (conf=1.0) in 1.017s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-004 @ benchmark/vuln_01_overprivileged.py (tools: get_user_email)
+    [Attempt 1] Confirm tool chain by enumerating exposed callables
+      → ✅ EXTRACTED (conf=0.95) in 1.094s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-006 @ get_user_email (benchmark/vuln_01_overprivileged.py:25)
+    [Attempt 1] Path traversal via ../ — confirmed by reading sibling file
+      → 🟡 REACHED (conf=0.35) in 0.894s
+    [Attempt 2] Shell command injection — confirmed via subprocess interception
+      → ✅ EXTRACTED (conf=1.0) in 0.938s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-001 @ get_user_email (benchmark/vuln_01_overprivileged.py:25)
+    [Attempt 1] Side-effect detection via filesystem/subprocess interception
+      → ✅ EXTRACTED (conf=0.95) in 1.425s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 2
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-002 @ search_flights (benchmark/vuln_02_prompt_injection.py:21)
+    [Attempt 1] Confirm injection-pattern language in tool description
+      → ✅ EXTRACTED (conf=0.95) in 1.168s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-002 @ book_flight (benchmark/vuln_02_prompt_injection.py:35)
+    [Attempt 1] Confirm injection-pattern language in tool description
+      → ✅ EXTRACTED (conf=0.95) in 0.756s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 3
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-007 @ benchmark/vuln_03_system_leak.py:17
+    [Attempt 1] Static secret extraction via file read
+      → ✅ EXTRACTED (conf=0.95) in 0.757s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.99)
+
+  [Validating] AGT-007 @ benchmark/vuln_03_system_leak.py:20
+    [Attempt 1] Static secret extraction via file read
+      → ✅ EXTRACTED (conf=0.95) in 0.999s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.99)
+
+  [Validating] AGT-003 @ system_prompt
+    [Attempt 1] Confirm system prompt has unprotected sensitive content
+      → 🟡 REACHED (conf=0.3) in 0.905s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.60)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 1
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-004 @ benchmark/vuln_04_tool_chain.py (tools: send_email, read_database)
+    [Stateful] Added 1 multi-turn exploit(s)
+    [Attempt 1] Confirm tool chain by enumerating exposed callables
+      → ✅ EXTRACTED (conf=0.95) in 1.039s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 3
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-007 @ benchmark/vuln_05_secrets.py:10
+    [Attempt 1] Static secret extraction via file read
+      → ✅ EXTRACTED (conf=0.95) in 1.028s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.99)
+
+  [Validating] AGT-007 @ benchmark/vuln_05_secrets.py:12
+    [Attempt 1] Static secret extraction via file read
+      → ✅ EXTRACTED (conf=0.95) in 1.029s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.99)
+
+  [Validating] AGT-007 @ benchmark/vuln_05_secrets.py:11
+    [Attempt 1] Static secret extraction via file read
+      → ✅ EXTRACTED (conf=0.95) in 1.03s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.99)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 8
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-008 @ calculate (benchmark/vuln_06_code_exec.py:22)
+    [Attempt 1] Inject os.system() via eval/exec argument
+      → ✅ EXTRACTED (conf=1.0) in 0.795s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-008 @ run_python (benchmark/vuln_06_code_exec.py:30)
+    [Attempt 1] Inject os.system() via eval/exec argument
+      → ✅ EXTRACTED (conf=1.0) in 1.372s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-008 @ system_info (benchmark/vuln_06_code_exec.py:38)
+    [Attempt 1] Shell command injection — confirmed via subprocess interception
+      → ✅ EXTRACTED (conf=1.0) in 1.142s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-004 @ benchmark/vuln_06_code_exec.py (tools: calculate)
+    [Attempt 1] Confirm tool chain by enumerating exposed callables
+      → ✅ EXTRACTED (conf=0.95) in 0.99s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-004 @ benchmark/vuln_06_code_exec.py (tools: system_info)
+    [Attempt 1] Confirm tool chain by enumerating exposed callables
+      → ✅ EXTRACTED (conf=0.95) in 0.765s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-006 @ calculate (benchmark/vuln_06_code_exec.py:22)
+    [Attempt 1] Inject os.system() via eval/exec argument
+      → ✅ EXTRACTED (conf=1.0) in 0.652s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-006 @ run_python (benchmark/vuln_06_code_exec.py:30)
+    [Attempt 1] Inject os.system() via eval/exec argument
+      → ✅ EXTRACTED (conf=1.0) in 0.731s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-006 @ system_info (benchmark/vuln_06_code_exec.py:38)
+    [Attempt 1] Shell command injection — confirmed via subprocess interception
+      → ✅ EXTRACTED (conf=1.0) in 0.619s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 6
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-006 @ search_users (benchmark/vuln_07_no_validation.py:24)
+    [Attempt 1] UNION-based SQL injection via f-string interpolation
+      → ⚪ NONE (conf=0.0) in 1.071s
+    [Bucket] ❌ DISMISSED  (final conf: 0.00)
+
+  [Validating] AGT-006 @ read_document (benchmark/vuln_07_no_validation.py:34)
+    [Attempt 1] Path traversal via ../ — confirmed by reading sibling file
+      → ⚪ NONE (conf=0.0) in 0.993s
+    [Bucket] ❌ DISMISSED  (final conf: 0.00)
+
+  [Validating] AGT-006 @ fetch_webpage (benchmark/vuln_07_no_validation.py:42)
+    [Attempt 1] SSRF — fetch internal URL and confirm unfiltered return
+      → ⚪ NONE (conf=0.0) in 0.91s
+    [Bucket] ❌ DISMISSED  (final conf: 0.00)
+
+  [Validating] AGT-009 @ fetch_webpage (benchmark/vuln_07_no_validation.py:42)
+    [Attempt 1] SSRF — fetch internal URL and confirm unfiltered return
+      → ⚪ NONE (conf=0.0) in 0.792s
+    [Bucket] ❌ DISMISSED  (final conf: 0.00)
+
+  [Validating] AGT-006 @ benchmark/vuln_07_no_validation.py:29
+
+  [Validating] AGT-001 @ read_document (benchmark/vuln_07_no_validation.py:34)
+    [Attempt 1] Side-effect detection via filesystem/subprocess interception
+      → ⚪ NONE (conf=0.0) in 1.151s
+    [Bucket] ❌ DISMISSED  (final conf: 0.00)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 1
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-005 @ benchmark/vuln_08_memory_poison.py (tools: save_note + get_notes)
+    [Stateful] Added 1 multi-turn exploit(s)
+    [Attempt 1] Memory poisoning chain: save_note() → get_notes() — plant marker, verify retriev
+      → ✅ EXTRACTED (conf=1.0) in 0.804s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+     pre-validation:  P=0.812 R=1.000 F1=0.897
+     post-validation: P=0.833 R=0.769 F1=0.800
+     buckets: {'CONFIRMED': 21, 'SUSPECTED': 2, 'DISMISSED': 5}
+     wall clock: 42.3s
+
+  ── Run 4/5 ──
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 0
+════════════════════════════════════════════════════════════
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 4
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-008 @ get_user_email (benchmark/vuln_01_overprivileged.py:25)
+    [Attempt 1] Shell command injection — confirmed via subprocess interception
+      → ✅ EXTRACTED (conf=1.0) in 0.674s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-004 @ benchmark/vuln_01_overprivileged.py (tools: get_user_email)
+    [Attempt 1] Confirm tool chain by enumerating exposed callables
+      → ✅ EXTRACTED (conf=0.95) in 1.125s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-006 @ get_user_email (benchmark/vuln_01_overprivileged.py:25)
+    [Attempt 1] Path traversal via ../ — confirmed by reading sibling file
+      → 🟡 REACHED (conf=0.35) in 1.042s
+    [Attempt 2] Shell command injection — confirmed via subprocess interception
+      → ✅ EXTRACTED (conf=1.0) in 0.904s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-001 @ get_user_email (benchmark/vuln_01_overprivileged.py:25)
+    [Attempt 1] Side-effect detection via filesystem/subprocess interception
+      → ✅ EXTRACTED (conf=0.95) in 1.391s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 2
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-002 @ search_flights (benchmark/vuln_02_prompt_injection.py:21)
+    [Attempt 1] Confirm injection-pattern language in tool description
+      → ✅ EXTRACTED (conf=0.95) in 0.623s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-002 @ book_flight (benchmark/vuln_02_prompt_injection.py:35)
+    [Attempt 1] Confirm injection-pattern language in tool description
+      → ✅ EXTRACTED (conf=0.95) in 0.656s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 3
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-007 @ benchmark/vuln_03_system_leak.py:17
+    [Attempt 1] Static secret extraction via file read
+      → ✅ EXTRACTED (conf=0.95) in 0.637s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.99)
+
+  [Validating] AGT-007 @ benchmark/vuln_03_system_leak.py:20
+    [Attempt 1] Static secret extraction via file read
+      → ✅ EXTRACTED (conf=0.95) in 0.642s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.99)
+
+  [Validating] AGT-003 @ system_prompt
+    [Attempt 1] Confirm system prompt has unprotected sensitive content
+      → 🟡 REACHED (conf=0.3) in 0.676s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.60)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 1
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-004 @ benchmark/vuln_04_tool_chain.py (tools: send_email, read_database)
+    [Stateful] Added 1 multi-turn exploit(s)
+    [Attempt 1] Confirm tool chain by enumerating exposed callables
+      → ✅ EXTRACTED (conf=0.95) in 0.623s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 3
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-007 @ benchmark/vuln_05_secrets.py:10
+    [Attempt 1] Static secret extraction via file read
+      → ✅ EXTRACTED (conf=0.95) in 0.651s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.99)
+
+  [Validating] AGT-007 @ benchmark/vuln_05_secrets.py:12
+    [Attempt 1] Static secret extraction via file read
+      → ✅ EXTRACTED (conf=0.95) in 0.701s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.99)
+
+  [Validating] AGT-007 @ benchmark/vuln_05_secrets.py:11
+    [Attempt 1] Static secret extraction via file read
+      → ✅ EXTRACTED (conf=0.95) in 0.675s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.99)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 8
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-008 @ calculate (benchmark/vuln_06_code_exec.py:22)
+    [Attempt 1] Inject os.system() via eval/exec argument
+      → ✅ EXTRACTED (conf=1.0) in 0.672s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-008 @ run_python (benchmark/vuln_06_code_exec.py:30)
+    [Attempt 1] Inject os.system() via eval/exec argument
+      → ✅ EXTRACTED (conf=1.0) in 0.76s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-008 @ system_info (benchmark/vuln_06_code_exec.py:38)
+    [Attempt 1] Shell command injection — confirmed via subprocess interception
+      → ✅ EXTRACTED (conf=1.0) in 0.669s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-004 @ benchmark/vuln_06_code_exec.py (tools: calculate)
+    [Attempt 1] Confirm tool chain by enumerating exposed callables
+      → ✅ EXTRACTED (conf=0.95) in 0.684s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-004 @ benchmark/vuln_06_code_exec.py (tools: system_info)
+    [Attempt 1] Confirm tool chain by enumerating exposed callables
+      → ✅ EXTRACTED (conf=0.95) in 0.659s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-006 @ calculate (benchmark/vuln_06_code_exec.py:22)
+    [Attempt 1] Inject os.system() via eval/exec argument
+      → ✅ EXTRACTED (conf=1.0) in 0.702s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-006 @ run_python (benchmark/vuln_06_code_exec.py:30)
+    [Attempt 1] Inject os.system() via eval/exec argument
+      → ✅ EXTRACTED (conf=1.0) in 0.631s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-006 @ system_info (benchmark/vuln_06_code_exec.py:38)
+    [Attempt 1] Shell command injection — confirmed via subprocess interception
+      → ✅ EXTRACTED (conf=1.0) in 0.647s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 6
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-006 @ search_users (benchmark/vuln_07_no_validation.py:24)
+    [Attempt 1] UNION-based SQL injection via f-string interpolation
+      → ⚪ NONE (conf=0.0) in 0.94s
+    [Bucket] ❌ DISMISSED  (final conf: 0.00)
+
+  [Validating] AGT-006 @ read_document (benchmark/vuln_07_no_validation.py:34)
+    [Attempt 1] Path traversal via ../ — confirmed by reading sibling file
+      → ⚪ NONE (conf=0.0) in 0.862s
+    [Bucket] ❌ DISMISSED  (final conf: 0.00)
+
+  [Validating] AGT-006 @ fetch_webpage (benchmark/vuln_07_no_validation.py:42)
+    [Attempt 1] SSRF — fetch internal URL and confirm unfiltered return
+      → ⚪ NONE (conf=0.0) in 0.83s
+    [Bucket] ❌ DISMISSED  (final conf: 0.00)
+
+  [Validating] AGT-009 @ fetch_webpage (benchmark/vuln_07_no_validation.py:42)
+    [Attempt 1] SSRF — fetch internal URL and confirm unfiltered return
+      → ⚪ NONE (conf=0.0) in 0.774s
+    [Bucket] ❌ DISMISSED  (final conf: 0.00)
+
+  [Validating] AGT-006 @ benchmark/vuln_07_no_validation.py:29
+
+  [Validating] AGT-001 @ read_document (benchmark/vuln_07_no_validation.py:34)
+    [Attempt 1] Side-effect detection via filesystem/subprocess interception
+      → ⚪ NONE (conf=0.0) in 0.993s
+    [Bucket] ❌ DISMISSED  (final conf: 0.00)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 1
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-005 @ benchmark/vuln_08_memory_poison.py (tools: save_note + get_notes)
+    [Stateful] Added 1 multi-turn exploit(s)
+    [Attempt 1] Memory poisoning chain: save_note() → get_notes() — plant marker, verify retriev
+      → ✅ EXTRACTED (conf=1.0) in 0.686s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+     pre-validation:  P=0.812 R=1.000 F1=0.897
+     post-validation: P=0.833 R=0.769 F1=0.800
+     buckets: {'CONFIRMED': 21, 'SUSPECTED': 2, 'DISMISSED': 5}
+     wall clock: 34.6s
+
+  ── Run 5/5 ──
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 0
+════════════════════════════════════════════════════════════
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 4
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-008 @ get_user_email (benchmark/vuln_01_overprivileged.py:25)
+    [Attempt 1] Shell command injection — confirmed via subprocess interception
+      → ✅ EXTRACTED (conf=1.0) in 0.702s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-004 @ benchmark/vuln_01_overprivileged.py (tools: get_user_email)
+    [Attempt 1] Confirm tool chain by enumerating exposed callables
+      → ✅ EXTRACTED (conf=0.95) in 0.712s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-006 @ get_user_email (benchmark/vuln_01_overprivileged.py:25)
+    [Attempt 1] Path traversal via ../ — confirmed by reading sibling file
+      → 🟡 REACHED (conf=0.35) in 0.686s
+    [Attempt 2] Shell command injection — confirmed via subprocess interception
+      → ✅ EXTRACTED (conf=1.0) in 0.696s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-001 @ get_user_email (benchmark/vuln_01_overprivileged.py:25)
+    [Attempt 1] Side-effect detection via filesystem/subprocess interception
+      → ✅ EXTRACTED (conf=0.95) in 0.667s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 2
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-002 @ search_flights (benchmark/vuln_02_prompt_injection.py:21)
+    [Attempt 1] Confirm injection-pattern language in tool description
+      → ✅ EXTRACTED (conf=0.95) in 0.653s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-002 @ book_flight (benchmark/vuln_02_prompt_injection.py:35)
+    [Attempt 1] Confirm injection-pattern language in tool description
+      → ✅ EXTRACTED (conf=0.95) in 0.681s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 3
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-007 @ benchmark/vuln_03_system_leak.py:17
+    [Attempt 1] Static secret extraction via file read
+      → ✅ EXTRACTED (conf=0.95) in 0.632s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.99)
+
+  [Validating] AGT-007 @ benchmark/vuln_03_system_leak.py:20
+    [Attempt 1] Static secret extraction via file read
+      → ✅ EXTRACTED (conf=0.95) in 0.685s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.99)
+
+  [Validating] AGT-003 @ system_prompt
+    [Attempt 1] Confirm system prompt has unprotected sensitive content
+      → 🟡 REACHED (conf=0.3) in 0.615s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.60)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 1
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-004 @ benchmark/vuln_04_tool_chain.py (tools: send_email, read_database)
+    [Stateful] Added 1 multi-turn exploit(s)
+    [Attempt 1] Confirm tool chain by enumerating exposed callables
+      → ✅ EXTRACTED (conf=0.95) in 0.648s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 3
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-007 @ benchmark/vuln_05_secrets.py:10
+    [Attempt 1] Static secret extraction via file read
+      → ✅ EXTRACTED (conf=0.95) in 0.659s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.99)
+
+  [Validating] AGT-007 @ benchmark/vuln_05_secrets.py:12
+    [Attempt 1] Static secret extraction via file read
+      → ✅ EXTRACTED (conf=0.95) in 0.722s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.99)
+
+  [Validating] AGT-007 @ benchmark/vuln_05_secrets.py:11
+    [Attempt 1] Static secret extraction via file read
+      → ✅ EXTRACTED (conf=0.95) in 1.044s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.99)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 8
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-008 @ calculate (benchmark/vuln_06_code_exec.py:22)
+    [Attempt 1] Inject os.system() via eval/exec argument
+      → ✅ EXTRACTED (conf=1.0) in 0.662s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-008 @ run_python (benchmark/vuln_06_code_exec.py:30)
+    [Attempt 1] Inject os.system() via eval/exec argument
+      → ✅ EXTRACTED (conf=1.0) in 0.626s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-008 @ system_info (benchmark/vuln_06_code_exec.py:38)
+    [Attempt 1] Shell command injection — confirmed via subprocess interception
+      → ✅ EXTRACTED (conf=1.0) in 0.758s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-004 @ benchmark/vuln_06_code_exec.py (tools: calculate)
+    [Attempt 1] Confirm tool chain by enumerating exposed callables
+      → ✅ EXTRACTED (conf=0.95) in 0.702s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-004 @ benchmark/vuln_06_code_exec.py (tools: system_info)
+    [Attempt 1] Confirm tool chain by enumerating exposed callables
+      → ✅ EXTRACTED (conf=0.95) in 0.951s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 0.95)
+
+  [Validating] AGT-006 @ calculate (benchmark/vuln_06_code_exec.py:22)
+    [Attempt 1] Inject os.system() via eval/exec argument
+      → ✅ EXTRACTED (conf=1.0) in 1.026s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-006 @ run_python (benchmark/vuln_06_code_exec.py:30)
+    [Attempt 1] Inject os.system() via eval/exec argument
+      → ✅ EXTRACTED (conf=1.0) in 0.722s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-006 @ system_info (benchmark/vuln_06_code_exec.py:38)
+    [Attempt 1] Shell command injection — confirmed via subprocess interception
+      → ✅ EXTRACTED (conf=1.0) in 0.725s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 6
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-006 @ search_users (benchmark/vuln_07_no_validation.py:24)
+    [Attempt 1] UNION-based SQL injection via f-string interpolation
+      → ⚪ NONE (conf=0.0) in 0.737s
+    [Bucket] ❌ DISMISSED  (final conf: 0.00)
+
+  [Validating] AGT-006 @ read_document (benchmark/vuln_07_no_validation.py:34)
+    [Attempt 1] Path traversal via ../ — confirmed by reading sibling file
+      → ⚪ NONE (conf=0.0) in 0.818s
+    [Bucket] ❌ DISMISSED  (final conf: 0.00)
+
+  [Validating] AGT-006 @ fetch_webpage (benchmark/vuln_07_no_validation.py:42)
+    [Attempt 1] SSRF — fetch internal URL and confirm unfiltered return
+      → ⚪ NONE (conf=0.0) in 0.832s
+    [Bucket] ❌ DISMISSED  (final conf: 0.00)
+
+  [Validating] AGT-009 @ fetch_webpage (benchmark/vuln_07_no_validation.py:42)
+    [Attempt 1] SSRF — fetch internal URL and confirm unfiltered return
+      → ⚪ NONE (conf=0.0) in 0.846s
+    [Bucket] ❌ DISMISSED  (final conf: 0.00)
+
+  [Validating] AGT-006 @ benchmark/vuln_07_no_validation.py:29
+
+  [Validating] AGT-001 @ read_document (benchmark/vuln_07_no_validation.py:34)
+    [Attempt 1] Side-effect detection via filesystem/subprocess interception
+      → ⚪ NONE (conf=0.0) in 0.869s
+    [Bucket] ❌ DISMISSED  (final conf: 0.00)
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 1
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-005 @ benchmark/vuln_08_memory_poison.py (tools: save_note + get_notes)
+    [Stateful] Added 1 multi-turn exploit(s)
+    [Attempt 1] Memory poisoning chain: save_note() → get_notes() — plant marker, verify retriev
+      → ✅ EXTRACTED (conf=1.0) in 0.695s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+     pre-validation:  P=0.812 R=1.000 F1=0.897
+     post-validation: P=0.833 R=0.769 F1=0.800
+     buckets: {'CONFIRMED': 21, 'SUSPECTED': 2, 'DISMISSED': 5}
+     wall clock: 34.2s
+
+======================================================================
+  AGGREGATE RESULTS  (5 runs)
+======================================================================
+
+  [1-3] Precision / Recall / F1 (pre-validation)
+    Precision                  mean=0.8125  median=0.8125  min=0.8125  max=0.8125  stdev=0.0
+    Recall                     mean=1.0000  median=1.0000  min=1.0000  max=1.0000  stdev=0.0
+    F1                         mean=0.8966  median=0.8966  min=0.8966  max=0.8966  stdev=0.0
+
+  Targets (>= 0.85):
+    FAIL  precision >= 0.85
+    PASS  recall >= 0.85
+    PASS  f1 >= 0.85
+
+  [4] False-positive rate
+    % safe files flagged       mean=0.0000  median=0.0000  min=0.0000  max=0.0000  stdev=0.0
+
+  [5] Determinism across 5 runs
+    unique outcomes: 1  (DETERMINISTIC)
+    meets target (<=1): PASS
+
+  [6] Scan time per agent (seconds, median-of-medians)
+    Static only                mean=0.0021  median=0.0017  min=0.0016  max=0.0038  stdev=0.0009
+    Hybrid (+LLM)              mean=0.0021  median=0.0017  min=0.0016  max=0.0038  stdev=0.0009
+    Validation                 mean=2.2505  median=2.0841  min=2.0207  max=2.8719  stdev=0.3176
+    Total                      mean=2.2519  median=2.0851  min=2.0232  max=2.8729  stdev=0.3174
+
+  [7] Estimated API cost
+    Cost USD (whole run)       mean=0.0000  median=0.0000  min=0.0000  max=0.0000  stdev=0.0
+    API requests               mean=0.0000  median=0.0000  min=0.0000  max=0.0000  stdev=0.0
+    Input tokens               mean=0.0000  median=0.0000  min=0.0000  max=0.0000  stdev=0.0
+    Output tokens              mean=0.0000  median=0.0000  min=0.0000  max=0.0000  stdev=0.0
+
+  [8] Validation buckets (run 1)
+    {'CONFIRMED': 21, 'SUSPECTED': 2, 'DISMISSED': 5}
+
+  [8b] Precision before vs after validation — THE KEY TEST
+    before: 0.8125
+    after:  0.8333
+    change: +0.0208
+
+
+  Full JSON:     reports/full_evaluation_5runs_20260729_153427.json
+  Markdown tables: reports/full_evaluation_5runs_20260729_153427.md
+

@@ -1,0 +1,25 @@
+
+[1/4] Resolving folder: benchmark_projects/05_research_assistant_safe
+      Discovered 6 Python file(s), 4 containing agent code
+
+[2/4] Analysing 6 file(s) (static only)...
+      3 tool(s) across the project
+
+[3/4] Cross-file capability chain analysis...
+      0 cross-file chain(s), 0 project-wide attack path(s)
+
+[4/4] Writing reports...
+      JSON:     reports/05_research_assistant_safe_project_report.json
+      Markdown: reports/05_research_assistant_safe_project_report.md
+
+==================================================================
+  AGENTGUARD PROJECT SCAN
+==================================================================
+  Target:       benchmark_projects/05_research_assistant_safe
+  Type:         folder
+  Files parsed: 6
+  Agent files:  4
+  Tools found:  3
+  Frameworks:   custom
+  Findings:     0
+

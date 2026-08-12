@@ -1,0 +1,20 @@
+
+==================================================================
+  REPEATED SCAN — 5 runs of a folder
+  Target: /home/student/realworld/autogen/python/packages/autogen-agentchat/src/autogen_agentchat
+  LLM: OFF (static, deterministic)
+==================================================================
+  Run 1/5: 12 finding(s) in 0.46s
+  Run 2/5: 12 finding(s) in 0.63s
+  Run 3/5: 12 finding(s) in 0.55s
+  Run 4/5: 12 finding(s) in 1.51s
+  Run 5/5: 12 finding(s) in 1.71s
+
+------------------------------------------------------------------
+  Unique outcomes across 5 runs: 1
+  Result: DETERMINISTIC — identical findings every run.
+  Finding counts per run: [12, 12, 12, 12, 12]
+  Median scan time: 0.63s
+
+  Report: reports/repeat_scan_autogen_agentchat.json
+

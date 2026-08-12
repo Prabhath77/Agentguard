@@ -1,0 +1,45 @@
+
+══════════════════════════════════════════════════════════════════════
+  THE AGENT TOP 10 — AgentGuard Vulnerability Taxonomy
+══════════════════════════════════════════════════════════════════════
+
+  [AGT-001] Excessive Tool Permissions
+     Severity: HIGH
+     An agent's tool has access to capabilities far beyond what its stated function requires. Example: a ...
+
+  [AGT-002] Prompt Injection via Tool Description
+     Severity: CRITICAL
+     Tool descriptions are concatenated into the LLM's context. An attacker who can influence a tool's de...
+
+  [AGT-003] System Prompt Leakage
+     Severity: MEDIUM
+     The agent's system prompt can be extracted by users through carefully crafted queries. System prompt...
+
+  [AGT-004] Unsafe Tool Chaining
+     Severity: CRITICAL
+     Individual tools are safe in isolation, but combinations of them create privilege escalation paths. ...
+
+  [AGT-005] Memory Poisoning
+     Severity: HIGH
+     Agents with persistent memory (vector stores, conversation history, RAG systems) can have malicious ...
+
+  [AGT-006] Missing Tool Input Validation
+     Severity: HIGH
+     Tool implementations trust the arguments provided by the LLM without validation. Since the LLM can b...
+
+  [AGT-007] Hardcoded Secrets in Agent Configuration
+     Severity: CRITICAL
+     API keys, credentials, or tokens embedded directly in agent code, system prompts, or tool definition...
+
+  [AGT-008] Unsafe Code Execution Capability
+     Severity: CRITICAL
+     Agent has tools that execute arbitrary code: eval(), exec(), shell commands, code interpreter tools ...
+
+  [AGT-009] Missing Output Filtering
+     Severity: MEDIUM
+     Tool outputs are inserted directly back into the LLM context without sanitisation. Malicious tool ou...
+
+  [AGT-010] Excessive Agency Without Confirmation
+     Severity: HIGH
+     Agent can take destructive or irreversible actions (deleting data, sending money, publishing content...
+

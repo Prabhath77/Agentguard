@@ -1,0 +1,34 @@
+
+[1/4] Resolving folder: benchmark_projects/01_fintech_support_agent
+      Discovered 6 Python file(s), 4 containing agent code
+
+[2/4] Analysing 6 file(s) (static only)...
+      5 tool(s) across the project
+
+[3/4] Cross-file capability chain analysis...
+      1 cross-file chain(s), 1 project-wide attack path(s)
+
+[4/4] Writing reports...
+      JSON:     reports/01_fintech_support_agent_project_report.json
+      Markdown: reports/01_fintech_support_agent_project_report.md
+
+==================================================================
+  AGENTGUARD PROJECT SCAN
+==================================================================
+  Target:       benchmark_projects/01_fintech_support_agent
+  Type:         folder
+  Files parsed: 6
+  Agent files:  4
+  Tools found:  5
+  Frameworks:   anthropic, custom
+  Findings:     1
+
+    [CRITICAL]   1
+
+------------------------------------------------------------------
+  CROSS-FILE CHAINS  (1)
+  Vulnerabilities invisible to single-file analysis
+------------------------------------------------------------------
+    [CRITICAL] Cross-file capability chain enables data exfiltration.
+      Chain: read_customer_records (accounts.py :: READ_LOCAL) + send_email (notifications.py :: WRITE_EXTERNAL)
+

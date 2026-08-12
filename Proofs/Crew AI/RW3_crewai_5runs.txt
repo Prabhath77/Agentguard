@@ -1,0 +1,20 @@
+
+==================================================================
+  REPEATED SCAN — 5 runs of a folder
+  Target: /home/student/realworld/crewAI-tools/crewai_tools/tools/code_interpreter_tool
+  LLM: OFF (static, deterministic)
+==================================================================
+  Run 1/5: 9 finding(s) in 0.02s
+  Run 2/5: 9 finding(s) in 0.01s
+  Run 3/5: 9 finding(s) in 0.02s
+  Run 4/5: 9 finding(s) in 0.01s
+  Run 5/5: 9 finding(s) in 0.02s
+
+------------------------------------------------------------------
+  Unique outcomes across 5 runs: 1
+  Result: DETERMINISTIC — identical findings every run.
+  Finding counts per run: [9, 9, 9, 9, 9]
+  Median scan time: 0.02s
+
+  Report: reports/repeat_scan_code_interpreter_tool.json
+

@@ -1,0 +1,20 @@
+
+==================================================================
+  REPEATED SCAN — 5 runs of a folder
+  Target: /home/student/realworld/langchain-mcp-adapters/langchain_mcp_adapters
+  LLM: OFF (static, deterministic)
+==================================================================
+  Run 1/5: 2 finding(s) in 0.08s
+  Run 2/5: 2 finding(s) in 0.06s
+  Run 3/5: 2 finding(s) in 0.07s
+  Run 4/5: 2 finding(s) in 0.07s
+  Run 5/5: 2 finding(s) in 0.07s
+
+------------------------------------------------------------------
+  Unique outcomes across 5 runs: 1
+  Result: DETERMINISTIC — identical findings every run.
+  Finding counts per run: [2, 2, 2, 2, 2]
+  Median scan time: 0.07s
+
+  Report: reports/repeat_scan_langchain_mcp_adapters.json
+

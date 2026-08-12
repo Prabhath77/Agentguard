@@ -1,0 +1,20 @@
+
+==================================================================
+  REPEATED SCAN — 5 runs of a folder
+  Target: /home/student/realworld/claude-quickstarts/agents
+  LLM: OFF (static, deterministic)
+==================================================================
+  Run 1/5: 3 finding(s) in 0.07s
+  Run 2/5: 3 finding(s) in 0.06s
+  Run 3/5: 3 finding(s) in 0.05s
+  Run 4/5: 3 finding(s) in 0.08s
+  Run 5/5: 3 finding(s) in 0.06s
+
+------------------------------------------------------------------
+  Unique outcomes across 5 runs: 1
+  Result: DETERMINISTIC — identical findings every run.
+  Finding counts per run: [3, 3, 3, 3, 3]
+  Median scan time: 0.06s
+
+  Report: reports/repeat_scan_agents.json
+

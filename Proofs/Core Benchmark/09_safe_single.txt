@@ -1,0 +1,24 @@
+
+[1/4] Parsing benchmark/safe_agent.py...
+      Found 2 tool(s), framework: anthropic
+
+[2/4] Building capability graph...
+      Identified 0 potential attack path(s)
+
+[3/4] Running vulnerability analysis...
+      Identified 0 finding(s)
+
+[4/4] Writing reports...
+      JSON:     reports/safe_agent_report.json
+      Markdown: reports/safe_agent_report.md
+
+════════════════════════════════════════════════════════════
+  AGENTGUARD SCAN RESULTS
+════════════════════════════════════════════════════════════
+  Target:    benchmark/safe_agent.py
+  Framework: anthropic
+  Tools:     2
+  Findings:  0
+
+
+

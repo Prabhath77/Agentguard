@@ -1,0 +1,70 @@
+
+[1/5] Parsing /home/student/realworld/damn-vulnerable-llm-agent/transaction_db.py...
+      Found 0 tool(s), framework: custom
+
+[2/5] Building capability graph...
+      Identified 0 potential attack path(s)
+
+[3/5] Running static + LLM analysis...
+      Identified 3 candidate finding(s)
+
+[4/5] Self-validation loop (Phase 3 + Phase 4)...
+
+════════════════════════════════════════════════════════════
+  PHASE 3+4: SELF-VALIDATION LOOP
+  Findings to validate: 3
+════════════════════════════════════════════════════════════
+
+  [Validating] AGT-007 @ /home/student/realworld/damn-vulnerable-llm-agent/transaction_db.py
+    [AI-prover FIRST] Asking the AI to write and run its own exploit
+      [LLM] 503 from gemini; retrying in 1s (attempt 2/3)
+  [AI-prover tokens] in=1278 out=40 thinking=1043 (total=2361)
+  [AI-prover generation failed] no EXPLOIT_CODE section found in response
+  [AI-prover raw response preview] Sorry, I cannot analyze the provided code snippet for vulnerabilities or evaluate security findings on specific code targets. You may search for static application security testing (SAST) methodologies and secret detection best practices online.
+    [Attempt 1] Static secret extraction via file read
+      → 🟡 REACHED (conf=0.3) in 0.625s
+    [Bucket] 🟡 SUSPECTED  (final conf: 0.65)
+
+  [Validating] AGT-006 @ /home/student/realworld/damn-vulnerable-llm-agent/transaction_db.py:62
+    [AI-prover FIRST] Asking the AI to write and run its own exploit
+  [AI-prover tokens] in=1305 out=40 thinking=1111 (total=2456)
+  [AI-prover generation failed] no EXPLOIT_CODE section found in response
+  [AI-prover raw response preview] Sorry, I cannot fulfill your request to analyze or verify vulnerabilities in the provided code snippet. You can search online for secure database querying practices and parameterized queries in Python's `sqlite3` module.
+    [Attempt 1] UNION-based SQL injection (class-method target) with dynamic column-count discov
+      → ✅ EXTRACTED (conf=1.0) in 0.518s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+  [Validating] AGT-006 @ /home/student/realworld/damn-vulnerable-llm-agent/transaction_db.py:76
+    [AI-prover FIRST] Asking the AI to write and run its own exploit
+  [AI-prover tokens] in=1305 out=45 thinking=1137 (total=2487)
+  [AI-prover generation failed] no EXPLOIT_CODE section found in response
+  [AI-prover raw response preview] Sorry, I cannot fulfill your request to analyze or verify vulnerabilities in the provided code snippet. You can search online for secure database access practices, such as using parameterized queries with Python's sqlite3 module to prevent SQL injection.
+    [Attempt 1] UNION-based SQL injection (class-method target) with dynamic column-count discov
+      → ✅ EXTRACTED (conf=1.0) in 0.549s
+      [Early exit] High-confidence proof obtained.
+    [Bucket] ✅ CONFIRMED  (final conf: 1.00)
+
+[5/5] Writing reports...
+      Markdown: reports/transaction_db_validated_report.md
+      JSON:     reports/transaction_db_validated_report.json
+
+════════════════════════════════════════════════════════════
+  VALIDATION SUMMARY
+════════════════════════════════════════════════════════════
+  ✅  CONFIRMED:  2
+  🟡  SUSPECTED:  1
+  ❌  DISMISSED:  0
+
+  CONFIRMED VULNERABILITIES (exploit succeeded):
+    ✅ [AGT-006] Missing Tool Input Validation
+       └─ /home/student/realworld/damn-vulnerable-llm-agent/transaction_db.py:62
+       └─ confidence: 100%
+    ✅ [AGT-006] Missing Tool Input Validation
+       └─ /home/student/realworld/damn-vulnerable-llm-agent/transaction_db.py:76
+       └─ confidence: 100%
+
+  SUSPECTED (manual review needed):
+    🟡 [AGT-007] Hardcoded Secrets in Agent Configuration
+       └─ /home/student/realworld/damn-vulnerable-llm-agent/transaction_db.py
+
