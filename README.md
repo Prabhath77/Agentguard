@@ -116,7 +116,9 @@ python3 -m agentguard.main compare                      # vs Bandit and Semgrep
 | `providers --test` | `[OK] <provider> responded` |
 | `scan benchmark/safe_agent.py --no-llm` | `Findings: 0` |
 | `scan-repeat <any target> --runs 5` | `1 unique outcome` |
-| `evaluate` | F1 ≈ 0.89–0.90 |
+| `evaluate` (11-agent benchmark) | Pre-validation F1 ≈ 0.87, post-validation F1 ≈ 0.79 |
+
+Post-validation precision rises (self-validation removes some false positives) while recall and F1 fall slightly — a genuine, deterministic trade-off, not a bug. Full numbers and discussion in the project's evaluation writeup.
 
 Every CONFIRMED or SUSPECTED finding states plainly which sandbox executed it — `Docker (isolated container)` or `subprocess (resource-limited, NOT filesystem/network isolated)` — printed live and saved permanently in the report, not just claimed.
 
@@ -194,6 +196,10 @@ The AI-authored exploit prover asks the active model to write and execute its ow
   then `export GEMINI_MODEL="<a name from that list, without the 'models/' prefix>"`.
 - **Rate limits (429 / 503) on any free tier** — handled automatically with retry/backoff; if persistent, switch provider rather than waiting.
 - **Docker shows unreachable in `providers --test`** despite being installed — almost always either the daemon isn't running (`sudo systemctl start docker`) or your user isn't in the `docker` group (`sudo usermod -aG docker $USER`, then log out and back in).
+
+## Source and evidence
+
+Full source code, benchmark dataset, and captured evaluation evidence: https://github.com/Prabhath77/Agentguard.git
 
 ## License
 
